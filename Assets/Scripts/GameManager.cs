@@ -7,127 +7,127 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public int jelatin;                                   // Á©¶óÆ¾ º¯¼ö
-    public int gold;                                      // °ñµå º¯¼ö
-    public List<Jelly> jelly_list = new List<Jelly>();    // GameManager ½ºÅ©¸³Æ®¿¡ Á©¸®¸¦ ÀúÀåÇÒ List º¯¼ö ¼±¾ğ
-    public List<Data> jelly_data_list = new List<Data>(); // GameManager ½ºÅ©¸³Æ®¿¡ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ List º¯¼ö ¼±¾ğ
-    public bool[] jelly_unlock_list;                      // ÇØ±İ µÇ¾ú´ÂÁöÀÇ ¿©ºÎ¸¦ ÀúÀåÇÒ ¸®½ºÆ®
+    public int jelatin;                                   // ì ¤ë¼í‹´ ë³€ìˆ˜
+    public int gold;                                      // ê³¨ë“œ ë³€ìˆ˜
+    public List<Jelly> jelly_list = new List<Jelly>();    // GameManager ìŠ¤í¬ë¦½íŠ¸ì— ì ¤ë¦¬ë¥¼ ì €ì¥í•  List ë³€ìˆ˜ ì„ ì–¸
+    public List<Data> jelly_data_list = new List<Data>(); // GameManager ìŠ¤í¬ë¦½íŠ¸ì— ë°ì´í„°ë¥¼ ì €ì¥í•  List ë³€ìˆ˜ ì„ ì–¸
+    public bool[] jelly_unlock_list;                      // í•´ê¸ˆ ë˜ì—ˆëŠ”ì§€ì˜ ì—¬ë¶€ë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
-    public int max_jelatin; // ÃÖ´ë Á©¶óÆ¾ ¼ö
-    public int max_gold;    // ÃÖ´ë °ñµå ¼ö
+    public int max_jelatin; // ìµœëŒ€ ì ¤ë¼í‹´ ìˆ˜
+    public int max_gold;    // ìµœëŒ€ ê³¨ë“œ ìˆ˜
 
-    public bool isSell;     // Á©¸®¸¦ ÆÄ´ÂÁö ¿©ºÎ
-    public bool isLive;     // °ÔÀÓÀÇ È°¼ºÈ­/ºñÈ°¼ºÈ­ »óÅÂ¸¦ ±¸ºĞ (Á©¸®ÀÇ ÄÁÆ®·ÑÀ» Á¦ÇÑÇÏ±â À§ÇÔ)
+    public bool isSell;     // ì ¤ë¦¬ë¥¼ íŒŒëŠ”ì§€ ì—¬ë¶€
+    public bool isLive;     // ê²Œì„ì˜ í™œì„±í™”/ë¹„í™œì„±í™” ìƒíƒœë¥¼ êµ¬ë¶„ (ì ¤ë¦¬ì˜ ì»¨íŠ¸ë¡¤ì„ ì œí•œí•˜ê¸° ìœ„í•¨)
 
-    public Sprite[] jelly_spritelist;    // ¸ğµç Á©¸®ÀÇ Á¾·ù¸¦ ÀúÀåÇÒ ¹è¿­
-    public string[] jelly_namelist;      // ¸ğµç Á©¸®ÀÇ ÀÌ¸§À» ÀúÀåÇÒ ¹è¿­
-    public int[] jelly_jelatinlist;      // ¸ğµç Á©¸®ÀÇ ÇÊ¿äÇÑ Á©¶óÆ¾ ¼ö¸¦ ÀúÀåÇÒ ¹è¿­
-    public int[] jelly_goldlist;         // ¸ğµç Á©¸®ÀÇ ÇÊ¿äÇÑ °ñµå ¼ö¸¦ ÀúÀåÇÒ ¹è¿­
+    public Sprite[] jelly_spritelist;    // ëª¨ë“  ì ¤ë¦¬ì˜ ì¢…ë¥˜ë¥¼ ì €ì¥í•  ë°°ì—´
+    public string[] jelly_namelist;      // ëª¨ë“  ì ¤ë¦¬ì˜ ì´ë¦„ì„ ì €ì¥í•  ë°°ì—´
+    public int[] jelly_jelatinlist;      // ëª¨ë“  ì ¤ë¦¬ì˜ í•„ìš”í•œ ì ¤ë¼í‹´ ìˆ˜ë¥¼ ì €ì¥í•  ë°°ì—´
+    public int[] jelly_goldlist;         // ëª¨ë“  ì ¤ë¦¬ì˜ í•„ìš”í•œ ê³¨ë“œ ìˆ˜ë¥¼ ì €ì¥í•  ë°°ì—´
 
-    public Text page_text;               // »óÁ¡ ÆäÀÌÁö ¼ö
-    public Image unlock_group_jelly_img; // ÇØ±İÇÑ Á©¸®ÀÇ ÀÌ¹ÌÁö
-    public Text unlock_group_gold_text;  // ÇØ±İÇÑ Á©¸®ÀÇ ÇÊ¿äÇÑ °ñµå ¼ö
-    public Text unlock_group_name_text;  // ÇØ±İÇÑ Á©¸®ÀÇ ÀÌ¸§
+    public Text page_text;               // ìƒì  í˜ì´ì§€ ìˆ˜
+    public Image unlock_group_jelly_img; // í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ ì´ë¯¸ì§€
+    public Text unlock_group_gold_text;  // í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ í•„ìš”í•œ ê³¨ë“œ ìˆ˜
+    public Text unlock_group_name_text;  // í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ ì´ë¦„
 
-    public GameObject lock_group;        // ÇØ±İÇÏÁö ¸øÇÑ Á©¸®ÀÇ ÆäÀÌÁö¸¦ °ü¸®ÇÒ ¿ÀºêÁ§Æ®
-    public Image lock_group_jelly_img;   // ÇØ±İÇÏÁö ¸øÇÑ Á©¸®ÀÇ ÀÌ¹ÌÁö
-    public Text lock_group_jelatin_text; // ÇØ±İÇÏÁö ¸øÇÑ Á©¸®ÀÇ ÇÊ¿äÇÑ Á©¶óÆ¾ ¼ö
+    public GameObject lock_group;        // í•´ê¸ˆí•˜ì§€ ëª»í•œ ì ¤ë¦¬ì˜ í˜ì´ì§€ë¥¼ ê´€ë¦¬í•  ì˜¤ë¸Œì íŠ¸
+    public Image lock_group_jelly_img;   // í•´ê¸ˆí•˜ì§€ ëª»í•œ ì ¤ë¦¬ì˜ ì´ë¯¸ì§€
+    public Text lock_group_jelatin_text; // í•´ê¸ˆí•˜ì§€ ëª»í•œ ì ¤ë¦¬ì˜ í•„ìš”í•œ ì ¤ë¼í‹´ ìˆ˜
 
-    // Num GroupÀÇ º¯¼öµé
-    public Text num_sub_text;      // Á©¸® ¾ÆÆÄÆ®ÀÇ ¼­ºê ÅØ½ºÆ® º¯¼ö (±â´ÉÀ» ³ªÅ¸³¿)
-    public Text num_btn_text;      // Á©¸® ¾ÆÆÄÆ®ÀÇ ¹öÆ° ÅØ½ºÆ® (°ñµå¸¦ ³ªÅ¸³¿)
-    public Button num_btn;         // Á©¸® ¾ÆÆÄÆ®ÀÇ ¹öÆ° º¯¼ö
-    public int num_level;          // Á©¸® ¾ÆÆÄÆ®ÀÇ ·¹º§ º¯¼ö
-    public int[] num_gold_list;    // Á©¸® ¾ÆÆÄÆ®ÀÇ °ñµå ¹è¿­
+    // Num Groupì˜ ë³€ìˆ˜ë“¤
+    public Text num_sub_text;      // ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ì„œë¸Œ í…ìŠ¤íŠ¸ ë³€ìˆ˜ (ê¸°ëŠ¥ì„ ë‚˜íƒ€ëƒ„)
+    public Text num_btn_text;      // ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ë²„íŠ¼ í…ìŠ¤íŠ¸ (ê³¨ë“œë¥¼ ë‚˜íƒ€ëƒ„)
+    public Button num_btn;         // ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ë²„íŠ¼ ë³€ìˆ˜
+    public int num_level;          // ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ë ˆë²¨ ë³€ìˆ˜
+    public int[] num_gold_list;    // ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ê³¨ë“œ ë°°ì—´
 
-    // Click GroupÀÇ º¯¼öµé
-    public Text click_sub_text;    // Á©¸® ²Ú²ÚÀÌÀÇ ¼­ºê ÅØ½ºÆ® º¯¼ö (±â´ÉÀ» ³ªÅ¸³¿)
-    public Text click_btn_text;    // Á©¸® ²Ú²ÚÀÌÀÇ ¹öÆ° ÅØ½ºÆ® (°ñµå¸¦ ³ªÅ¸³¿)
-    public Button click_btn;       // Á©¸® ²Ú²ÚÀÌÀÇ ¹öÆ° º¯¼ö
-    public int click_level;        // Á©¸® ²Ú²ÚÀÌÀÇ ·¹º§ º¯¼ö
-    public int[] click_gold_list;  // Á©¸® ²Ú²ÚÀÌÀÇ °ñµå ¹è¿­
+    // Click Groupì˜ ë³€ìˆ˜ë“¤
+    public Text click_sub_text;    // ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ì„œë¸Œ í…ìŠ¤íŠ¸ ë³€ìˆ˜ (ê¸°ëŠ¥ì„ ë‚˜íƒ€ëƒ„)
+    public Text click_btn_text;    // ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ë²„íŠ¼ í…ìŠ¤íŠ¸ (ê³¨ë“œë¥¼ ë‚˜íƒ€ëƒ„)
+    public Button click_btn;       // ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ë²„íŠ¼ ë³€ìˆ˜
+    public int click_level;        // ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ë ˆë²¨ ë³€ìˆ˜
+    public int[] click_gold_list;  // ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ê³¨ë“œ ë°°ì—´
 
-    public RuntimeAnimatorController[] level_ac; // Animator º¯°æÀ» °ü¸®ÇÏ±â À§ÇØ ChangeAc() ÇÔ¼ö¿Í ÇÔ²² Ãß°¡  /  ChangeAc() ÇÔ¼ö´Â Jelly ½ºÅ©¸³Æ®¿¡¼­ Animator °´Ã¼¿Í levelÀ» ¹Ş¾Æ¿Í runtimeAnimatorController¸¦ ÅëÇØ ÇØ´ç Á©¸®ÀÇ ·¹º§¿¡ µû¶ó Animator¸¦ º¯°æÇÏ´Â ¿ªÇÒÀ» ¼öÇàÇÔ
+    public RuntimeAnimatorController[] level_ac; // Animator ë³€ê²½ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•´ ChangeAc() í•¨ìˆ˜ì™€ í•¨ê»˜ ì¶”ê°€  /  ChangeAc() í•¨ìˆ˜ëŠ” Jelly ìŠ¤í¬ë¦½íŠ¸ì—ì„œ Animator ê°ì²´ì™€ levelì„ ë°›ì•„ì™€ runtimeAnimatorControllerë¥¼ í†µí•´ í•´ë‹¹ ì ¤ë¦¬ì˜ ë ˆë²¨ì— ë”°ë¼ Animatorë¥¼ ë³€ê²½í•˜ëŠ” ì—­í• ì„ ìˆ˜í–‰í•¨
 
-    public Text jelatin_text;  // Á©¶óÆ¾ ¼ö (Text)
-    public Text gold_text;     // °ñµå ¼ö (Text)
+    public Text jelatin_text;  // ì ¤ë¼í‹´ ìˆ˜ (Text)
+    public Text gold_text;     // ê³¨ë“œ ìˆ˜ (Text)
 
-    // Jelly Panel°ú Plant PanelÀÇ Animator¸¦ ÀÌ¿ëÇØ¾ß ÇØ¼­
-    // GameManager ½ºÅ©¸³Æ®¿¡ °¢°¢ÀÇ ¿ÀºêÁ§Æ® °´Ã¼¸¦ °¡Á®¿À±â À§ÇÑ º¯¼ö¸¦ »ı¼ºÇÔ
-    public Image jelly_panel;  // Á©¸® ¿ÀºêÁ§Æ®¸¦ °¡Á® ¿À±â À§ÇÑ º¯¼ö
-    public Image plant_panel;  // ÇÃ·£Æ® ¿ÀºêÁ§Æ®¸¦ °¡Á® ¿À±â À§ÇÑ º¯¼ö
-    public Image option_panel; // ¿É¼Ç ¿ÀºêÁ§Æ®¸¦ °¡Á® ¿À±â À§ÇÑ º¯¼ö
-    public Image bgm_panel;    // ¹è°æÀ½ ¿ÀºêÁ§Æ®¸¦ °¡Á® ¿À±â À§ÇÑ º¯¼ö
+    // Jelly Panelê³¼ Plant Panelì˜ Animatorë¥¼ ì´ìš©í•´ì•¼ í•´ì„œ
+    // GameManager ìŠ¤í¬ë¦½íŠ¸ì— ê°ê°ì˜ ì˜¤ë¸Œì íŠ¸ ê°ì²´ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜ë¥¼ ìƒì„±í•¨
+    public Image jelly_panel;  // ì ¤ë¦¬ ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    public Image plant_panel;  // í”ŒëœíŠ¸ ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    public Image option_panel; // ì˜µì…˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    public Image bgm_panel;    // ë°°ê²½ìŒ ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
 
-    public GameObject prefab;  // ÇÁ¸®ÆÕ º¯¼ö  //  ÇÁ¸®ÆÕ : °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ »ı¼º, ¼³Á¤ ¹× ÀúÀåÇÒ ¼ö ÀÖÀ½ / ÇØ´ç °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ ¸ğµç ÄÄÆ÷³ÍÆ®, ÇÁ·ÎÆÛÆ¼ °ª, ÀÚ½Ä °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ Àç»ç¿ë °¡´ÉÇÑ ¿¡¼ÂÀ¸·Î ¸¸µé ¼ö ÀÖ°Ô ÇØÁÜ
+    public GameObject prefab;  // í”„ë¦¬íŒ¹ ë³€ìˆ˜  //  í”„ë¦¬íŒ¹ : ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±, ì„¤ì • ë° ì €ì¥í•  ìˆ˜ ìˆìŒ / í•´ë‹¹ ê²Œì„ ì˜¤ë¸Œì íŠ¸ì˜ ëª¨ë“  ì»´í¬ë„ŒíŠ¸, í”„ë¡œí¼í‹° ê°’, ìì‹ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ì—ì…‹ìœ¼ë¡œ ë§Œë“¤ ìˆ˜ ìˆê²Œ í•´ì¤Œ
 
-    public GameObject data_manager_obj; // DataManager¸¦ ½±°Ô °ü¸®ÇÏ±â À§ÇÑ º¯¼ö
+    public GameObject data_manager_obj; // DataManagerë¥¼ ì‰½ê²Œ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
-    DataManager data_manager;           // DataManager¸¦ ½±°Ô °ü¸®ÇÏ±â À§ÇÑ º¯¼ö
+    DataManager data_manager;           // DataManagerë¥¼ ì‰½ê²Œ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
-    Animator jelly_anim; // Á©¸® ¿ÀºêÁ§Æ®ÀÇ ¾Ö´Ï¸ÅÀÌ¼ÇÀ» °¡Á® ¿À±â À§ÇÑ º¯¼ö
-    Animator plant_anim; // ÇÃ·£Æ® ¿ÀºêÁ§Æ®ÀÇ ¾Ö´Ï¸ÅÀÌ¼ÇÀ» °¡Á® ¿À±â À§ÇÑ º¯¼ö
-    Animator bgm_anim;   // ¹è°æÀ½ ¿ÀºêÁ§Æ®ÀÇ ¾Ö´Ï¸ÅÀÌ¼ÇÀ» °¡Á® ¿À±â À§ÇÑ º¯¼ö
+    Animator jelly_anim; // ì ¤ë¦¬ ì˜¤ë¸Œì íŠ¸ì˜ ì• ë‹ˆë§¤ì´ì…˜ì„ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    Animator plant_anim; // í”ŒëœíŠ¸ ì˜¤ë¸Œì íŠ¸ì˜ ì• ë‹ˆë§¤ì´ì…˜ì„ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    Animator bgm_anim;   // ë°°ê²½ìŒ ì˜¤ë¸Œì íŠ¸ì˜ ì• ë‹ˆë§¤ì´ì…˜ì„ ê°€ì ¸ ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
 
-    bool isJellyClick;   // Á©¸® ¹öÆ°ÀÌ ´­·È´ÂÁö ¿©ºÎ
-    bool isPlantClick;   // ÇÃ·£Æ® ¹öÆ°ÀÌ ´­·È´ÂÁö ¿©ºÎ
-    bool isBgmClick;     // ºê±İ ¹öÆ°ÀÌ ´­·È´ÂÁö ¿©ºÎ
-    bool isOption;       // ESC Ã¢ÀÌ ¶ß°Ô ÇÒÁö ¸»Áö ¿©ºÎ
+    bool isJellyClick;   // ì ¤ë¦¬ ë²„íŠ¼ì´ ëˆŒë ¸ëŠ”ì§€ ì—¬ë¶€
+    bool isPlantClick;   // í”ŒëœíŠ¸ ë²„íŠ¼ì´ ëˆŒë ¸ëŠ”ì§€ ì—¬ë¶€
+    bool isBgmClick;     // ë¸Œê¸ˆ ë²„íŠ¼ì´ ëˆŒë ¸ëŠ”ì§€ ì—¬ë¶€
+    bool isOption;       // ESC ì°½ì´ ëœ¨ê²Œ í• ì§€ ë§ì§€ ì—¬ë¶€
 
-    public int page;     // »óÁ¡ ÆäÀÌÁö º¯¼ö
+    public int page;     // ìƒì  í˜ì´ì§€ ë³€ìˆ˜
 
-    // ·£´ı (Á©¶óÆ¾)¿¡ ´ëÇÑ º¯¼öµé
-    public int random_jelatin_variable;   // 0 ~ 5±îÁöÀÇ °ª Áß ÇÏ³ª
-    public int random_jelatin;            // 10 ~ 1000±îÁöÀÇ °ª Áß ÇÏ³ª
-    public int random_jelatin_value;      // À§¿¡ µÎ º¯¼ö¸¦ °öÇÑ °ªÀ¸·Î / ½ÇÁúÀûÀ¸·Î ¾ò´Â Á©¶óÆ¾ ¼ö
+    // ëœë¤ (ì ¤ë¼í‹´)ì— ëŒ€í•œ ë³€ìˆ˜ë“¤
+    public int random_jelatin_variable;   // 0 ~ 5ê¹Œì§€ì˜ ê°’ ì¤‘ í•˜ë‚˜
+    public int random_jelatin;            // 10 ~ 1000ê¹Œì§€ì˜ ê°’ ì¤‘ í•˜ë‚˜
+    public int random_jelatin_value;      // ìœ„ì— ë‘ ë³€ìˆ˜ë¥¼ ê³±í•œ ê°’ìœ¼ë¡œ / ì‹¤ì§ˆì ìœ¼ë¡œ ì–»ëŠ” ì ¤ë¼í‹´ ìˆ˜
 
-    public GameObject random_jelatin_obj;  // Á©¶óÆ¾À» ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ °ü¸®ÇÒ ¿ÀºêÁ§Æ®
-    public Text random_jelatin_text;       // Á©¶óÆ¾À» ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®
-    public string random_J_text;           // ¾ò¾î¿Â Á©¶óÆ¾ÀÇ °³¼ö¿¡ µû¶ó ´Ş¶óÁö´Â ÅØ½ºÆ®
+    public GameObject random_jelatin_obj;  // ì ¤ë¼í‹´ì„ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ê´€ë¦¬í•  ì˜¤ë¸Œì íŠ¸
+    public Text random_jelatin_text;       // ì ¤ë¼í‹´ì„ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸
+    public string random_J_text;           // ì–»ì–´ì˜¨ ì ¤ë¼í‹´ì˜ ê°œìˆ˜ì— ë”°ë¼ ë‹¬ë¼ì§€ëŠ” í…ìŠ¤íŠ¸
 
-    int jelatin_delay;                     // Á©¶óÆ¾À» ¾ò´Â °£°İ
-    int jelatin_text_delay;                // Á©¶óÆ¾ È¹µæ ÅØ½ºÆ®¸¦ ¶ç¿ì´Â ½Ã°£
+    int jelatin_delay;                     // ì ¤ë¼í‹´ì„ ì–»ëŠ” ê°„ê²©
+    int jelatin_text_delay;                // ì ¤ë¼í‹´ íšë“ í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ” ì‹œê°„
 
-    bool isGetJelatin;                     // Á©¶óÆ¾À» ¾ò¾ú´ÂÁö ¿©ºÎ
-    bool isJ_Text;                         // Á©¶óÆ¾ È¹µæ ÅØ½ºÆ®¸¦ ¶ç¿ì´ÂÁö ¿©ºÎ
+    bool isGetJelatin;                     // ì ¤ë¼í‹´ì„ ì–»ì—ˆëŠ”ì§€ ì—¬ë¶€
+    bool isJ_Text;                         // ì ¤ë¼í‹´ íšë“ í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ”ì§€ ì—¬ë¶€
 
-    // ·£´ı (°ñµå)¿¡ ´ëÇÑ º¯¼öµé
-    public int random_gold_variable;      // 0 ~ 5±îÁöÀÇ °ª Áß ÇÏ³ª
-    public int random_gold;               // 0 ~ 2500±îÁöÀÇ °ª Áß ÇÏ³ª
-    public int random_gold_value;         // À§¿¡ µÎ º¯¼ö¸¦ °öÇÑ °ªÀ¸·Î / ½ÇÁúÀûÀ¸·Î ¾ò´Â °ñµå ¼ö
+    // ëœë¤ (ê³¨ë“œ)ì— ëŒ€í•œ ë³€ìˆ˜ë“¤
+    public int random_gold_variable;      // 0 ~ 5ê¹Œì§€ì˜ ê°’ ì¤‘ í•˜ë‚˜
+    public int random_gold;               // 0 ~ 2500ê¹Œì§€ì˜ ê°’ ì¤‘ í•˜ë‚˜
+    public int random_gold_value;         // ìœ„ì— ë‘ ë³€ìˆ˜ë¥¼ ê³±í•œ ê°’ìœ¼ë¡œ / ì‹¤ì§ˆì ìœ¼ë¡œ ì–»ëŠ” ê³¨ë“œ ìˆ˜
 
-    public GameObject random_gold_obj;    // °ñµå¸¦ ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ °ü¸®ÇÒ ¿ÀºêÁ§Æ®
-    public Text random_gold_text;         // °ñµå¸¦ ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®
-    public string random_G_text;          // ¾ò¾î¿Â °ñµåÀÇ °³¼ö¿¡ µû¶ó ´Ş¶óÁö´Â ÅØ½ºÆ®
+    public GameObject random_gold_obj;    // ê³¨ë“œë¥¼ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ê´€ë¦¬í•  ì˜¤ë¸Œì íŠ¸
+    public Text random_gold_text;         // ê³¨ë“œë¥¼ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸
+    public string random_G_text;          // ì–»ì–´ì˜¨ ê³¨ë“œì˜ ê°œìˆ˜ì— ë”°ë¼ ë‹¬ë¼ì§€ëŠ” í…ìŠ¤íŠ¸
 
-    int gold_delay;                       // °ñµå¸¦ ¾ò´Â °£°İ
-    int gold_text_delay;                  // °ñµå È¹µæ ÅØ½ºÆ®¸¦ ¶ç¿ì´Â ½Ã°£
+    int gold_delay;                       // ê³¨ë“œë¥¼ ì–»ëŠ” ê°„ê²©
+    int gold_text_delay;                  // ê³¨ë“œ íšë“ í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ” ì‹œê°„
 
-    bool isGetGold;                       // °ñµå¸¦ ¾ò¾ú´ÂÁö ¿©ºÎ
-    bool isG_Text;                        // °ñµå È¹µæ ÅØ½ºÆ®¸¦ ¶ç¿ì´ÂÁö ¿©ºÎ
+    bool isGetGold;                       // ê³¨ë“œë¥¼ ì–»ì—ˆëŠ”ì§€ ì—¬ë¶€
+    bool isG_Text;                        // ê³¨ë“œ íšë“ í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ”ì§€ ì—¬ë¶€
 
-    AudioSource bgm_player;               // bgm_playerÀÇ AudioSource
-    public Button[] bgm_button;           // ¹è°æÀ½ º¯°æ¹öÆ°ÀÇ ¹è¿­
+    AudioSource bgm_player;               // bgm_playerì˜ AudioSource
+    public Button[] bgm_button;           // ë°°ê²½ìŒ ë³€ê²½ë²„íŠ¼ì˜ ë°°ì—´
 
-    public int index;                     // º¯°æµÈ ¹è°æÀ½À» ½±°Ô ÀúÀåÇÒ ¼ö ÀÖ°Ô ÇÏ´Â º¯¼ö
+    public int index;                     // ë³€ê²½ëœ ë°°ê²½ìŒì„ ì‰½ê²Œ ì €ì¥í•  ìˆ˜ ìˆê²Œ í•˜ëŠ” ë³€ìˆ˜
 
-    void Awake() // ½ÃÀÛÇÏÀÚ ¸¶ÀÚ
+    void Awake() // ì‹œì‘í•˜ì ë§ˆì
     {
         instance = this;
 
-        // ¾Ö´Ï¸ÅÀÌ¼ÇµéÀ» ÃÊ±âÈ­ ÇÔ
+        // ì• ë‹ˆë§¤ì´ì…˜ë“¤ì„ ì´ˆê¸°í™” í•¨
         jelly_anim = jelly_panel.GetComponent<Animator>();
         plant_anim = plant_panel.GetComponent<Animator>();
         bgm_anim = bgm_panel.GetComponent<Animator>();
 
         isLive = true;
 
-        jelatin_text.text = jelatin.ToString();                         // intÇüÀÎ jelatin º¯¼ö¸¦ StringÇüÀ¸·Î ¹Ù²ãÁÜ
-        gold_text.text = gold.ToString();                               // intÇüÀÎ gold º¯¼ö¸¦ StringÇüÀ¸·Î ¹Ù²ãÁÜ
-        unlock_group_gold_text.text = jelly_goldlist[0].ToString();     // intÇü ¹è¿­ÀÌ¿´´ø jelly_goldlistÀÇ 0¹øÂ° ÀÎµ¦½º¸¦ StringÇüÀ¸·Î ¹Ù²ãÁÜ
-        lock_group_jelatin_text.text = jelly_jelatinlist[0].ToString(); // intÇü ¹è¿­ÀÌ¿´´ø jelly_jelatinlistÀÇ 0¹øÂ° ÀÎµ¦½º¸¦ StringÇüÀ¸·Î ¹Ù²ãÁÜ
+        jelatin_text.text = jelatin.ToString();                         // intí˜•ì¸ jelatin ë³€ìˆ˜ë¥¼ Stringí˜•ìœ¼ë¡œ ë°”ê¿”ì¤Œ
+        gold_text.text = gold.ToString();                               // intí˜•ì¸ gold ë³€ìˆ˜ë¥¼ Stringí˜•ìœ¼ë¡œ ë°”ê¿”ì¤Œ
+        unlock_group_gold_text.text = jelly_goldlist[0].ToString();     // intí˜• ë°°ì—´ì´ì˜€ë˜ jelly_goldlistì˜ 0ë²ˆì§¸ ì¸ë±ìŠ¤ë¥¼ Stringí˜•ìœ¼ë¡œ ë°”ê¿”ì¤Œ
+        lock_group_jelatin_text.text = jelly_jelatinlist[0].ToString(); // intí˜• ë°°ì—´ì´ì˜€ë˜ jelly_jelatinlistì˜ 0ë²ˆì§¸ ì¸ë±ìŠ¤ë¥¼ Stringí˜•ìœ¼ë¡œ ë°”ê¿”ì¤Œ
 
-        data_manager = data_manager_obj.GetComponent<DataManager>();    // data_manager º¯¼ö ÃÊ±âÈ­
+        data_manager = data_manager_obj.GetComponent<DataManager>();    // data_manager ë³€ìˆ˜ ì´ˆê¸°í™”
 
         page = 0;
         jelly_unlock_list = new bool[12];
@@ -135,70 +135,70 @@ public class GameManager : MonoBehaviour
         bgm_player = GameObject.Find("BGM Player").GetComponent<AudioSource>();
     }
 
-    void Start() // Awake() ÇÔ¼ö ´ÙÀ½À¸·Î
+    void Start() // Awake() í•¨ìˆ˜ ë‹¤ìŒìœ¼ë¡œ
     {
-        // DataManager¿¡ ÀÇÇØ µ¥ÀÌÅÍ°¡ ·ÎµåµÇ±â Àü¿¡ GameManager°¡ È°¼ºÈ­ µÇ¾î ºó µ¥ÀÌÅÍ¸¦ ÂüÁ¶ÇÏ´Â Çö»óÀ» ¹æÁöÇÔ
-        Invoke("LoadData", 0.1f); // LoadData ÇÔ¼ö¸¦ Áö¿¬½ÃÅ´   /  Invoke() -> ÇÔ¼ö ½ÃÀÛ ½Ã°£À» Áö¿¬½ÃÅ´
+        // DataManagerì— ì˜í•´ ë°ì´í„°ê°€ ë¡œë“œë˜ê¸° ì „ì— GameManagerê°€ í™œì„±í™” ë˜ì–´ ë¹ˆ ë°ì´í„°ë¥¼ ì°¸ì¡°í•˜ëŠ” í˜„ìƒì„ ë°©ì§€í•¨
+        Invoke("LoadData", 0.1f); // LoadData í•¨ìˆ˜ë¥¼ ì§€ì—°ì‹œí‚´   /  Invoke() -> í•¨ìˆ˜ ì‹œì‘ ì‹œê°„ì„ ì§€ì—°ì‹œí‚´
     }
 
-    void Update() // ¸Å ÇÁ¶óÀÓ¸¶´Ù
+    void Update() // ë§¤ í”„ë¼ì„ë§ˆë‹¤
     {
-        if (Input.GetButtonDown("Cancel"))          // ESC ¹öÆ°À» ´­·¶À» ¶§ (ESC¸¦ ´©¸£¸é true¸¦ ¹İÈ¯)
+        if (Input.GetButtonDown("Cancel"))          // ESC ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ (ESCë¥¼ ëˆ„ë¥´ë©´ trueë¥¼ ë°˜í™˜)
         {
-            if (isJellyClick) ClickJellyBtn();      // Á©¸® UI°¡ ÄÑÁ® ÀÖ¾ú´Ù¸é (Á©¸® ¹öÆ°ÀÌ ´­·¶À» ¶§) ÇÔ¼ö¸¦ »ç¿ëÇØ¼­ UI¸¦ ³»¸®°í
-            else if (isPlantClick) ClickPlantBtn(); // ÇÃ·£Æ® UI°¡ ÄÑÁ® ÀÖ¾ú´Ù¸é (ÇÃ·£Æ® ¹öÆ°ÀÌ ´­·¶À» ¶§) ÇÔ¼ö¸¦ »ç¿ëÇØ¼­ UI¸¦ ³»¸®°í
-            else if (isBgmClick) ClickBgmBtn();     // ¹è°æÀ½ UI°¡ ÄÑÁ® ÀÖ¾ú´Ù¸é (¹è°æÀ½ ¹öÆ°ÀÌ ´­·ÈÀ» ¶§) ÇÔ¼ö¸¦ »ç¿ëÇØ¼­ UI¸¦ ³»¸®°í 
-            else Option();                          // ¾Æ¹« UIµµ ÄÑÁ® ÀÖÁö ¾Ê¾Ò´Ù¸é ESC Ã¢À» ¿Ã¸°´Ù
+            if (isJellyClick) ClickJellyBtn();      // ì ¤ë¦¬ UIê°€ ì¼œì ¸ ìˆì—ˆë‹¤ë©´ (ì ¤ë¦¬ ë²„íŠ¼ì´ ëˆŒë €ì„ ë•Œ) í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•´ì„œ UIë¥¼ ë‚´ë¦¬ê³ 
+            else if (isPlantClick) ClickPlantBtn(); // í”ŒëœíŠ¸ UIê°€ ì¼œì ¸ ìˆì—ˆë‹¤ë©´ (í”ŒëœíŠ¸ ë²„íŠ¼ì´ ëˆŒë €ì„ ë•Œ) í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•´ì„œ UIë¥¼ ë‚´ë¦¬ê³ 
+            else if (isBgmClick) ClickBgmBtn();     // ë°°ê²½ìŒ UIê°€ ì¼œì ¸ ìˆì—ˆë‹¤ë©´ (ë°°ê²½ìŒ ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ) í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•´ì„œ UIë¥¼ ë‚´ë¦¬ê³  
+            else Option();                          // ì•„ë¬´ UIë„ ì¼œì ¸ ìˆì§€ ì•Šì•˜ë‹¤ë©´ ESC ì°½ì„ ì˜¬ë¦°ë‹¤
         }
     }
 
-    void FixedUpdate() // ÀÏÁ¤ÇÑ °£°İ¸¶´Ù
+    void FixedUpdate() // ì¼ì •í•œ ê°„ê²©ë§ˆë‹¤
     {
-        if (!isGetJelatin) StartCoroutine(GetRandomJelatin()); // ÄÚ·çÆ¾ ÇÔ¼ö ½ÇÇà
+        if (!isGetJelatin) StartCoroutine(GetRandomJelatin()); // ì½”ë£¨í‹´ í•¨ìˆ˜ ì‹¤í–‰
 
-        if (!isGetGold) StartCoroutine(GetRandomGold());       // ÄÚ·çÆ¾ ÇÔ¼ö ½ÇÇà
+        if (!isGetGold) StartCoroutine(GetRandomGold());       // ì½”ë£¨í‹´ í•¨ìˆ˜ ì‹¤í–‰
     }
 
-    void LateUpdate() // ¸ğµç Update ÇÔ¼öµéÀÌ È£ÃâµÈ ´ÙÀ½
+    void LateUpdate() // ëª¨ë“  Update í•¨ìˆ˜ë“¤ì´ í˜¸ì¶œëœ ë‹¤ìŒ
     {
-        // Format ÇÔ¼ö¸¦ ÅëÇØ ¼ıÀÚ ÅØ½ºÆ®ÀÇ Ç¥Çö½ÄÀ» ÁöÁ¤, SmoothStep ÇÔ¼ö¸¦ ÅëÇØ ¼ıÀÚ°¡ º¯È¯µÇ´Â »çÀÌ¿¡ ÀûÀıÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Ãß°¡ÇÔ
-        // jelatin_text¿Í gold_textÀÇ °æ¿ì Á¢±Ù ÁöÁ¤ÀÚ¸¦ publicÀ¸·Î ¼³Á¤ÇÏ¿© À¯´ÏÆ¼ ÇÁ·Î±×·¥¿¡¼­ µû·Î ÁöÁ¤ÇÔ
+        // Format í•¨ìˆ˜ë¥¼ í†µí•´ ìˆ«ì í…ìŠ¤íŠ¸ì˜ í‘œí˜„ì‹ì„ ì§€ì •, SmoothStep í•¨ìˆ˜ë¥¼ í†µí•´ ìˆ«ìê°€ ë³€í™˜ë˜ëŠ” ì‚¬ì´ì— ì ì ˆí•œ ì• ë‹ˆë©”ì´ì…˜ì„ ì¶”ê°€í•¨
+        // jelatin_textì™€ gold_textì˜ ê²½ìš° ì ‘ê·¼ ì§€ì •ìë¥¼ publicìœ¼ë¡œ ì„¤ì •í•˜ì—¬ ìœ ë‹ˆí‹° í”„ë¡œê·¸ë¨ì—ì„œ ë”°ë¡œ ì§€ì •í•¨
         jelatin_text.text = string.Format("{0:n0}", (int)Mathf.SmoothStep(float.Parse(jelatin_text.text), jelatin, 0.5f));
         gold_text.text = string.Format("{0:n0}", (int)Mathf.SmoothStep(float.Parse(gold_text.text), gold, 0.5f));
 
-        num_sub_text.text = "Á©¸® ¼ö¿ë·® " + num_level * 2;                               // ±â´ÉÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ ¾Ë¸Â°Ô ¹Ù²ãÁØ ´ÙÀ½
-        if (num_level >= 5) num_btn.gameObject.SetActive(false);                          // ÀÌ¹Ì Á©¸® ¾ÆÆÄÆ®ÀÇ ·¹º§ÀÌ ÃÖ°í ·¹º§ÀÌ¶ó¸é ¹öÆ°À» ¾ø¾Ö°í
-        else num_btn_text.text = string.Format("{0:n0}", num_gold_list[num_level]);       // ±×°Ô ¾Æ´Ï¶ó¸é ¾÷±×·¹ÀÌµå¿¡ ÇÊ¿äÇÑ °ñµå¸¦ ¶ç¿ò
+        num_sub_text.text = "ì ¤ë¦¬ ìˆ˜ìš©ëŸ‰ " + num_level * 2;                                // ê¸°ëŠ¥ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ì•Œë§ê²Œ ë°”ê¿”ì¤€ ë‹¤ìŒ
+        if (num_level >= 5) num_btn.gameObject.SetActive(false);                          // ì´ë¯¸ ì ¤ë¦¬ ì•„íŒŒíŠ¸ì˜ ë ˆë²¨ì´ ìµœê³  ë ˆë²¨ì´ë¼ë©´ ë²„íŠ¼ì„ ì—†ì• ê³ 
+        else num_btn_text.text = string.Format("{0:n0}", num_gold_list[num_level]);       // ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ì—…ê·¸ë ˆì´ë“œì— í•„ìš”í•œ ê³¨ë“œë¥¼ ë„ì›€
 
-        click_sub_text.text = "Å¬¸¯ »ı»ê·® X " + click_level;                             // ±â´ÉÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ ¾Ë¸Â°Ô ¹Ù²ãÁØ ´ÙÀ½
-        if (click_level >= 5) click_btn.gameObject.SetActive(false);                      // ÀÌ¹Ì Á©¸® ²Ú²ÚÀÌÀÇ ·¹º§ÀÌ ÃÖ°í ·¹º§ÀÌ¶ó¸é ¹öÆ°À» ¾ø¾Ö°í
-        else click_btn_text.text = string.Format("{0:n0}", click_gold_list[click_level]); // ±×°Ô ¾Æ´Ï¶ó¸é ¾÷±×·¹ÀÌµå¿¡ ÇÊ¿äÇÑ °ñµå¸¦ ¶ç¿ò
+        click_sub_text.text = "í´ë¦­ ìƒì‚°ëŸ‰ X " + click_level;                              // ê¸°ëŠ¥ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ì•Œë§ê²Œ ë°”ê¿”ì¤€ ë‹¤ìŒ
+        if (click_level >= 5) click_btn.gameObject.SetActive(false);                      // ì´ë¯¸ ì ¤ë¦¬ ê¾¹ê¾¹ì´ì˜ ë ˆë²¨ì´ ìµœê³  ë ˆë²¨ì´ë¼ë©´ ë²„íŠ¼ì„ ì—†ì• ê³ 
+        else click_btn_text.text = string.Format("{0:n0}", click_gold_list[click_level]); // ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ì—…ê·¸ë ˆì´ë“œì— í•„ìš”í•œ ê³¨ë“œë¥¼ ë„ì›€
     }
 
-    public void ChangeAc(Animator anim, int level)            // À§¿¡ ÀÖ´Â ¹è¿­°ú ÇÔ²² Animator º¯°æÀ» °ü¸®ÇÔ
+    public void ChangeAc(Animator anim, int level)            // ìœ„ì— ìˆëŠ” ë°°ì—´ê³¼ í•¨ê»˜ Animator ë³€ê²½ì„ ê´€ë¦¬í•¨
     {
-        anim.runtimeAnimatorController = level_ac[level - 1]; // level_ac ¹è¿­ÀÇ ÃÖ´ë Å©±â´Â 3 (¾Ö´Ï¸ÅÀÌ¼ÇÀÇ °³¼ö)ÀÌ¸ç, level °ªÀº 1ºÎÅÍ 3±îÁö·Î level °ªÀÌ ¹è¿­ÀÇ Å©±â¸¦ ¹ş¾î³ªÁö ¾Êµµ·Ï -1 (¹è¿­Àº 0ºÎÅÍ ½ÃÀÛ)À» ÇØÁÖ¾î¾ß ÇÔ
-        SoundManager.instance.PlaySound("Grow");              // ¼ºÀåÇÏ´Â »ç¿îµå Ãâ·Â
+        anim.runtimeAnimatorController = level_ac[level - 1]; // level_ac ë°°ì—´ì˜ ìµœëŒ€ í¬ê¸°ëŠ” 3 (ì• ë‹ˆë§¤ì´ì…˜ì˜ ê°œìˆ˜)ì´ë©°, level ê°’ì€ 1ë¶€í„° 3ê¹Œì§€ë¡œ level ê°’ì´ ë°°ì—´ì˜ í¬ê¸°ë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šë„ë¡ -1 (ë°°ì—´ì€ 0ë¶€í„° ì‹œì‘)ì„ í•´ì£¼ì–´ì•¼ í•¨
+        SoundManager.instance.PlaySound("Grow");              // ì„±ì¥í•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void GetJelatin(int id, int level)      // Á©¶óÆ¾ È¹µæÀ» GameManager¿¡¼­ °ü¸®ÇÏ°Ô ÇÔ
+    public void GetJelatin(int id, int level)      // ì ¤ë¼í‹´ íšë“ì„ GameManagerì—ì„œ ê´€ë¦¬í•˜ê²Œ í•¨
     {
-        jelatin += (id + 1) * level * click_level; // Á©¶óÆ¾ÀÌ id¿Í level, click_level, clear_boss¿¡ ºñ·ÊÇØ¼­ Áõ°¡ÇÔ
+        jelatin += (id + 1) * level * click_level; // ì ¤ë¼í‹´ì´ idì™€ level, click_level, clear_bossì— ë¹„ë¡€í•´ì„œ ì¦ê°€í•¨
 
-        if (jelatin > max_jelatin)                 // ¸¸¾à Á©¶óÆ¾ÀÌ ÇÑ°è¸¦ ³Ñ¾ú´Ù¸é
-            jelatin = max_jelatin;                 // ÇöÀç Á©¶óÆ¼ÀÇ ¼ö¸¦ ÇÑ°èÁ¡°ú °°°Ô ¸¸µê
+        if (jelatin > max_jelatin)                 // ë§Œì•½ ì ¤ë¼í‹´ì´ í•œê³„ë¥¼ ë„˜ì—ˆë‹¤ë©´
+            jelatin = max_jelatin;                 // í˜„ì¬ ì ¤ë¼í‹°ì˜ ìˆ˜ë¥¼ í•œê³„ì ê³¼ ê°™ê²Œ ë§Œë“¦
     }
 
-    public void GetGold(int id, int level, Jelly jelly) // °ñµå È¹µæ ¶ÇÇÑ GameManager¿¡¼­ °ü¸®ÇÏ°Ô ÇÔ
+    public void GetGold(int id, int level, Jelly jelly) // ê³¨ë“œ íšë“ ë˜í•œ GameManagerì—ì„œ ê´€ë¦¬í•˜ê²Œ í•¨
     {
-        gold += jelly_goldlist[id] * level;             // Á©¸®ÀÇ id¿Í level, clear_boss¿¡ µû¶ó¼­ °ñµå È¹µæ ÈÄ
+        gold += jelly_goldlist[id] * level;             // ì ¤ë¦¬ì˜ idì™€ level, clear_bossì— ë”°ë¼ì„œ ê³¨ë“œ íšë“ í›„
 
-        if (gold > max_gold)                            // ¸¸¾à °ñµå°¡ ÇÑ°è¸¦ ³Ñ¾ú´Ù¸é
-            gold = max_gold;                            // ÇöÀç °ñµåÀÇ ¼ö¸¦ ÇÑ°èÁ¡°ú °°°Ô ¸¸µç µÚ
+        if (gold > max_gold)                            // ë§Œì•½ ê³¨ë“œê°€ í•œê³„ë¥¼ ë„˜ì—ˆë‹¤ë©´
+            gold = max_gold;                            // í˜„ì¬ ê³¨ë“œì˜ ìˆ˜ë¥¼ í•œê³„ì ê³¼ ê°™ê²Œ ë§Œë“  ë’¤
 
-        jelly_list.Remove(jelly);                       // Á©¸®¸¦ ¾ø¾Ú
+        jelly_list.Remove(jelly);                       // ì ¤ë¦¬ë¥¼ ì—†ì•°
 
-        SoundManager.instance.PlaySound("Get Gold");    // °ñµå¸¦ ¾ò´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Get Gold");    // ê³¨ë“œë¥¼ ì–»ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
     public void CheckSell()
@@ -206,389 +206,386 @@ public class GameManager : MonoBehaviour
         isSell = isSell == false;
     }
 
-    // °¢°¢ ¹öÆ°ÀÌ Å¬¸¯ µÉ ½Ã ¹ß»ıÇÏ¸ç °¢°¢ÀÇ UI Ã¢À» ¿À¸£ ³»¸®´Â ¿ªÇÒÀ» ¼öÇà
-    public void ClickJellyBtn() // Á©¸® ¹öÆ°ÀÌ ´­·¶À» ¶§
+    // ê°ê° ë²„íŠ¼ì´ í´ë¦­ ë  ì‹œ ë°œìƒí•˜ë©° ê°ê°ì˜ UI ì°½ì„ ì˜¤ë¥´ ë‚´ë¦¬ëŠ” ì—­í• ì„ ìˆ˜í–‰
+    public void ClickJellyBtn() // ì ¤ë¦¬ ë²„íŠ¼ì´ ëˆŒë €ì„ ë•Œ
     {
-        if (isPlantClick)                                   // ÇÃ·£Æ® ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isPlantClick)                                   // í”ŒëœíŠ¸ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            plant_anim.SetTrigger("doHide");                // ÇÃ·£Æ® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            plant_anim.SetTrigger("doHide");                // í”ŒëœíŠ¸ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isPlantClick = false;                           // ÇÃ·£Æ® Å¬¸¯À» ºñÈ°¼ºÈ­½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isPlantClick = false;                           // í”ŒëœíŠ¸ í´ë¦­ì„ ë¹„í™œì„±í™”ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isBgmClick)                                     // ¹è°æÀ½ ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isBgmClick)                                     // ë°°ê²½ìŒ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            bgm_anim.SetTrigger("doHide");                  // ¹è°æÀ½ UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            bgm_anim.SetTrigger("doHide");                  // ë°°ê²½ìŒ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isBgmClick = false;                             // ¹è°æÀ½ Å¬¸¯À» ºñÈ°¼ºÈ­½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isBgmClick = false;                             // ë°°ê²½ìŒ í´ë¦­ì„ ë¹„í™œì„±í™”ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isJellyClick)                                   // Á©¸® ¹öÆ°ÀÌ ÀÌ¹Ì ´­·Á ÀÖ´Ù¸é
+        if (isJellyClick)                                   // ì ¤ë¦¬ ë²„íŠ¼ì´ ì´ë¯¸ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            jelly_anim.SetTrigger("doHide");                // Á©¸® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            jelly_anim.SetTrigger("doHide");                // ì ¤ë¦¬ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
 
-        else                                                // ´­·Á ÀÖÁö ¾Ê¾Ò´Ù¸é
+        else                                                // ëˆŒë ¤ ìˆì§€ ì•Šì•˜ë‹¤ë©´
         {
-            jelly_anim.SetTrigger("doShow");                // Á©¸® UI¸¦ º¸¿©ÁÖ°í
-            SoundManager.instance.PlaySound("Pause In");    // UI¸¦ ¿Ã¸®´Â »ç¿îµå Ãâ·Â
+            jelly_anim.SetTrigger("doShow");                // ì ¤ë¦¬ UIë¥¼ ë³´ì—¬ì£¼ê³ 
+            SoundManager.instance.PlaySound("Pause In");    // UIë¥¼ ì˜¬ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
 
-        isJellyClick = !isJellyClick;                       // ±× ´ÙÀ½ Á©¸® Å¬¸¯À» ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
-        isLive = !isLive;                                   // ¶óÀÌºê¸¦ ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
+        isJellyClick = !isJellyClick;                       // ê·¸ ë‹¤ìŒ ì ¤ë¦¬ í´ë¦­ì„ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
+        isLive = !isLive;                                   // ë¼ì´ë¸Œë¥¼ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
     }
 
 
-    public void ClickPlantBtn() // ÇÃ·£Æ® ¹öÆ°ÀÌ ´­·ÈÀ» ¶§
+    public void ClickPlantBtn() // í”ŒëœíŠ¸ ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ
     {
-        if (isJellyClick)                                   // Á©¸® ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isJellyClick)                                   // ì ¤ë¦¬ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            jelly_anim.SetTrigger("doHide");                // Á©¸® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            jelly_anim.SetTrigger("doHide");                // ì ¤ë¦¬ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isJellyClick = false;                           // Á©¸® Å¬¸¯À» ºñÈ°¼ºÈ­ ½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isJellyClick = false;                           // ì ¤ë¦¬ í´ë¦­ì„ ë¹„í™œì„±í™” ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isBgmClick)                                     // ¹è°æÀ½ ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isBgmClick)                                     // ë°°ê²½ìŒ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            bgm_anim.SetTrigger("doHide");                  // ¹è°æÀ½ UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            bgm_anim.SetTrigger("doHide");                  // ë°°ê²½ìŒ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isBgmClick = false;                             // ¹è°æÀ½ Å¬¸¯À» ºñÈ°¼ºÈ­½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isBgmClick = false;                             // ë°°ê²½ìŒ í´ë¦­ì„ ë¹„í™œì„±í™”ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isPlantClick)                                   // ÇÃ·£Æ® ¹öÆ°ÀÌ ÀÌ¹Ì ´­·Á ÀÖ´Ù¸é
+        if (isPlantClick)                                   // í”ŒëœíŠ¸ ë²„íŠ¼ì´ ì´ë¯¸ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            plant_anim.SetTrigger("doHide");                // ÇÃ·£Æ® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            plant_anim.SetTrigger("doHide");                // í”ŒëœíŠ¸ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
-        else                                                // ´­·Á ÀÖÁö ¾Ê¾Ò´Ù¸é
+        else                                                // ëˆŒë ¤ ìˆì§€ ì•Šì•˜ë‹¤ë©´
         { 
-            plant_anim.SetTrigger("doShow");                // ÇÃ·£Æ® UI¸¦ º¸¿©ÁÖ°í
-            SoundManager.instance.PlaySound("Pause In");    // UI¸¦ ¿Ã¸®´Â »ç¿îµå Ãâ·Â
+            plant_anim.SetTrigger("doShow");                // í”ŒëœíŠ¸ UIë¥¼ ë³´ì—¬ì£¼ê³ 
+            SoundManager.instance.PlaySound("Pause In");    // UIë¥¼ ì˜¬ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
 
-        isPlantClick = !isPlantClick;                       // ±× ´ÙÀ½ ÇÃ·£Æ® Å¬¸¯À» ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
-        isLive = !isLive;                                   // ¶óÀÌºê¸¦ ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
+        isPlantClick = !isPlantClick;                       // ê·¸ ë‹¤ìŒ í”ŒëœíŠ¸ í´ë¦­ì„ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
+        isLive = !isLive;                                   // ë¼ì´ë¸Œë¥¼ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
     }
 
-    public void ClickBgmBtn() // ¹è°æÀ½ ¹öÆ°ÀÌ ´­·ÈÀ» ¶§
+    public void ClickBgmBtn() // ë°°ê²½ìŒ ë²„íŠ¼ì´ ëˆŒë ¸ì„ ë•Œ
     {
-        if (isJellyClick)                                   // Á©¸® ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isJellyClick)                                   // ì ¤ë¦¬ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            jelly_anim.SetTrigger("doHide");                // Á©¸® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            jelly_anim.SetTrigger("doHide");                // ì ¤ë¦¬ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isJellyClick = false;                           // Á©¸® Å¬¸¯À» ºñÈ°¼ºÈ­ ½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isJellyClick = false;                           // ì ¤ë¦¬ í´ë¦­ì„ ë¹„í™œì„±í™” ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isPlantClick)                                   // ÇÃ·£Æ® ¹öÆ°ÀÌ ÀÌ¹Ì ´­·Á ÀÖ´Ù¸é
+        if (isPlantClick)                                   // í”ŒëœíŠ¸ ë²„íŠ¼ì´ ì´ë¯¸ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            plant_anim.SetTrigger("doHide");                // ÇÃ·£Æ® UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            plant_anim.SetTrigger("doHide");                // í”ŒëœíŠ¸ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-            isPlantClick = false;                           // ÇÃ·£Æ® Å¬¸¯À» ºñÈ°¼ºÈ­½ÃÅ°°í
-            isLive = true;                                  // Á©¸®¸¦ ÄÁÆ®·Ñ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+            isPlantClick = false;                           // í”ŒëœíŠ¸ í´ë¦­ì„ ë¹„í™œì„±í™”ì‹œí‚¤ê³ 
+            isLive = true;                                  // ì ¤ë¦¬ë¥¼ ì»¨íŠ¸ë¡¤ í•  ìˆ˜ ìˆê²Œ í•¨
         }
 
-        if (isBgmClick)                                     // ¹è°æÀ½ ¹öÆ°ÀÌ ´­·Á ÀÖ´Ù¸é
+        if (isBgmClick)                                     // ë°°ê²½ìŒ ë²„íŠ¼ì´ ëˆŒë ¤ ìˆë‹¤ë©´
         {
-            bgm_anim.SetTrigger("doHide");                  // ¹è°æÀ½ UI¸¦ ¼û±â°í
-            SoundManager.instance.PlaySound("Pause Out");   // UI¸¦ ³»¸®´Â »ç¿îµå Ãâ·Â
+            bgm_anim.SetTrigger("doHide");                  // ë°°ê²½ìŒ UIë¥¼ ìˆ¨ê¸°ê³ 
+            SoundManager.instance.PlaySound("Pause Out");   // UIë¥¼ ë‚´ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
-        else                                                // ´­·Á ÀÖÁö ¾Ê¾Ò´Ù¸é
+        else                                                // ëˆŒë ¤ ìˆì§€ ì•Šì•˜ë‹¤ë©´
         {
-            bgm_anim.SetTrigger("doShow");                  // ¹è°æÀ½ UI¸¦ º¸¿©ÁÖ°í
-            SoundManager.instance.PlaySound("Pause In");    // UI¸¦ ¿Ã¸®´Â »ç¿îµå Ãâ·Â
+            bgm_anim.SetTrigger("doShow");                  // ë°°ê²½ìŒ UIë¥¼ ë³´ì—¬ì£¼ê³ 
+            SoundManager.instance.PlaySound("Pause In");    // UIë¥¼ ì˜¬ë¦¬ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         }
 
-        isBgmClick = !isBgmClick;                           // ±× ´ÙÀ½ ¹è°æÀ½ Å¬¸¯À» ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
-        isLive = !isLive;                                   // ¶óÀÌºê¸¦ ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
+        isBgmClick = !isBgmClick;                           // ê·¸ ë‹¤ìŒ ë°°ê²½ìŒ í´ë¦­ì„ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
+        isLive = !isLive;                                   // ë¼ì´ë¸Œë¥¼ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
     }
 
-    // °¢°¢ ¹öÆ°ÀÌ Å¬¸¯ µÉ ½Ã ¹ß»ıÇÏ¸ç °¢°¢ÀÇ UI Ã¢À» ¿À¸£ ³»¸®´Â ¿ªÇÒÀ» ¼öÇà
-    public void Option() // ESC Å°¸¦ ´­·¶À» ¶§
+    // ê°ê° ë²„íŠ¼ì´ í´ë¦­ ë  ì‹œ ë°œìƒí•˜ë©° ê°ê°ì˜ UI ì°½ì„ ì˜¤ë¥´ ë‚´ë¦¬ëŠ” ì—­í• ì„ ìˆ˜í–‰
+    public void Option() // ESC í‚¤ë¥¼ ëˆŒë €ì„ ë•Œ
     {
-        isOption = !isOption;                                       // ¿É¼ÇÀ» ¹İ´ë »óÅÂ·Î ¸¸µé¾îÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
-        isLive = !isLive;                                           // ¶óÀÌºê¸¦ ¹İ´ë »óÅÂ·Î ¸¸µé¾î ÁØ´Ù (true »óÅÂ¿´À¸¸é false·Î, false »óÅÂ¿´À¸¸é true·Î ¹Ù²Ş)
+        isOption = !isOption;                                       // ì˜µì…˜ì„ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
+        isLive = !isLive;                                           // ë¼ì´ë¸Œë¥¼ ë°˜ëŒ€ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤€ë‹¤ (true ìƒíƒœì˜€ìœ¼ë©´ falseë¡œ, false ìƒíƒœì˜€ìœ¼ë©´ trueë¡œ ë°”ê¿ˆ)
 
-        option_panel.gameObject.SetActive(isOption);                // ±× ´ÙÀ½ ¿É¼ÇÀÌ true »óÅÂ·Î ¹Ù²î¾ú´Ù¸é ºñÈ°¼ºÈ­ µÇ¾î ÀÖ´ø ESC Ã¢ UI¸¦ È°¼ºÈ­ ½ÃÅ´ 
-        Time.timeScale = isOption == true ? 0 : 1;                  // ESC Ã¢ÀÌ ¿­·Á ÀÖ´Ù¸é ½Ã°£À» ¸ØÃß°í ¾Æ´Ï¶ó¸é ½Ã°£À» Èå¸£°Ô ÇÔ
+        option_panel.gameObject.SetActive(isOption);                // ê·¸ ë‹¤ìŒ ì˜µì…˜ì´ true ìƒíƒœë¡œ ë°”ë€Œì—ˆë‹¤ë©´ ë¹„í™œì„±í™” ë˜ì–´ ìˆë˜ ESC ì°½ UIë¥¼ í™œì„±í™” ì‹œí‚´ 
+        Time.timeScale = isOption == true ? 0 : 1;                  // ESC ì°½ì´ ì—´ë ¤ ìˆë‹¤ë©´ ì‹œê°„ì„ ë©ˆì¶”ê³  ì•„ë‹ˆë¼ë©´ ì‹œê°„ì„ íë¥´ê²Œ í•¨
 
         isGetJelatin = !isGetJelatin;
-        random_jelatin_obj.gameObject.SetActive(isGetJelatin);      // Á©¶óÆ¾ È¹µæ ÅØ½ºÆ®¸¦ Àá½Ã ºñÈ°¼ºÈ­ ½ÃÅ´
+        random_jelatin_obj.gameObject.SetActive(isGetJelatin);      // ì ¤ë¼í‹´ íšë“ í…ìŠ¤íŠ¸ë¥¼ ì ì‹œ ë¹„í™œì„±í™” ì‹œí‚´
 
         isGetGold = !isGetGold;
-        random_gold_obj.gameObject.SetActive(isGetGold);            // °ñµå È¹µæ ÅØ½ºÆ®¸¦ Àá½Ã ºñÈ°¼ºÈ­ ½ÃÅ´
-
-        // ¿©±â±îÁö¸¸ ÇÏ¸é ¾ø¾îÁ³´ø ÅØ½ºÆ®°¡ ESC Ã¢À» ¿­°í ´İÀ¸´Ï ´Ù½Ã »ı±â°Ô µÊ
-        // ±×·¡¼­ if¹®À» ÇÏ³ª »ç¿ëÇÔ
-
-        if (!isOption) // ¿É¼Ç Ã¢ÀÌ ÄÑÁ® ÀÖÁö ¾Ê´Ù¸é
+        random_gold_obj.gameObject.SetActive(isGetGold);            // ê³¨ë“œ íšë“ í…ìŠ¤íŠ¸ë¥¼ ì ì‹œ ë¹„í™œì„±í™” ì‹œí‚´
+        
+        if (!isOption) // ì˜µì…˜ ì°½ì´ ì¼œì ¸ ìˆì§€ ì•Šë‹¤ë©´
         {
-            random_jelatin_obj.gameObject.SetActive(!isGetJelatin); // Á©¶óÆ¾ È¹µæ ÅØ½ºÆ®¸¦ ¿µ±¸ÀûÀ¸·Î ºñÈ°¼ºÈ­ ½ÃÅ´ (ÅØ½ºÆ®¸¸ ºñÈ°¼ºÈ­ ½ÃÄ×±â¸¸ Çß±â ¶§¹®¿¡ °ñµå´Â Á¤»óÀûÀ¸·Î µé¾î¿È)
+            random_jelatin_obj.gameObject.SetActive(!isGetJelatin); // ì ¤ë¼í‹´ íšë“ í…ìŠ¤íŠ¸ë¥¼ ì˜êµ¬ì ìœ¼ë¡œ ë¹„í™œì„±í™” ì‹œí‚´ (í…ìŠ¤íŠ¸ë§Œ ë¹„í™œì„±í™” ì‹œì¼°ê¸°ë§Œ í–ˆê¸° ë•Œë¬¸ì— ê³¨ë“œëŠ” ì •ìƒì ìœ¼ë¡œ ë“¤ì–´ì˜´)
 
-            random_gold_obj.gameObject.SetActive(!isGetGold);       // °ñµå È¹µæ ÅØ½ºÆ®¸¦ ¿µ±¸ÀûÀ¸·Î ºñÈ°¼ºÈ­ ½ÃÅ´ (ÅØ½ºÆ®¸¸ ºñÈ°¼ºÈ­ ½ÃÄ×±â¸¸ Çß±â ¶§¹®¿¡ °ñµå´Â Á¤»óÀûÀ¸·Î µé¾î¿È)
+            random_gold_obj.gameObject.SetActive(!isGetGold);       // ê³¨ë“œ íšë“ í…ìŠ¤íŠ¸ë¥¼ ì˜êµ¬ì ìœ¼ë¡œ ë¹„í™œì„±í™” ì‹œí‚´ (í…ìŠ¤íŠ¸ë§Œ ë¹„í™œì„±í™” ì‹œì¼°ê¸°ë§Œ í–ˆê¸° ë•Œë¬¸ì— ê³¨ë“œëŠ” ì •ìƒì ìœ¼ë¡œ ë“¤ì–´ì˜´)
         }
     }
 
-    public void PageUp() // ´ÙÀ½ ÆäÀÌÁö ¹öÆ°À» ´©¸¦ ½Ã
+    public void PageUp() // ë‹¤ìŒ í˜ì´ì§€ ë²„íŠ¼ì„ ëˆ„ë¥¼ ì‹œ
     {
-        if (page >= 11)                              // ¸¸¾à ÃÖ´ë ÆäÀÌÁö¸¦ ³Ñ°åÀ¸¸é ½ÇÇà X
+        if (page >= 11)                              // ë§Œì•½ ìµœëŒ€ í˜ì´ì§€ë¥¼ ë„˜ê²¼ìœ¼ë©´ ì‹¤í–‰ X
         {   
-            SoundManager.instance.PlaySound("Fail"); // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â
+            SoundManager.instance.PlaySound("Fail"); // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
             return;   
         }
 
-        ++page;                                      // ÆäÀÌÁö ¼ö Áõ°¡ (´ÙÀ½ ÆäÀÌÁö·Î ³Ñ±è)
-        ChangePage();                                // ÆäÀÌÁö¸¦ ¹Ù²Ù´Â ÇÔ¼ö È£Ãâ
+        ++page;                                      // í˜ì´ì§€ ìˆ˜ ì¦ê°€ (ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ê¹€)
+        ChangePage();                                // í˜ì´ì§€ë¥¼ ë°”ê¾¸ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
     }
 
-    public void PageDown() // ÀÌÀü ÆäÀÌÁö ¹öÆ°Àº ´©¸¦ ½Ã
+    public void PageDown() // ì´ì „ í˜ì´ì§€ ë²„íŠ¼ì€ ëˆ„ë¥¼ ì‹œ
     {
-        if (page <= 0)                               // 0 ÆäÀÌÁö ÀüÀ¸·Î ³Ñ±â·Á ÇÏ¸é ½ÇÇà X
+        if (page <= 0)                               // 0 í˜ì´ì§€ ì „ìœ¼ë¡œ ë„˜ê¸°ë ¤ í•˜ë©´ ì‹¤í–‰ X
         {
-            SoundManager.instance.PlaySound("Fail"); // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â
+            SoundManager.instance.PlaySound("Fail"); // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
             return;    
         }    
-        --page;                                      // ÆäÀÌÁö ¼ö °¨¼Ò (ÀÌÀü ÆäÀÌÁö·Î ³Ñ±è)
-        ChangePage();                                // ÆäÀÌÁö¸¦ ¹Ù²Ù´Â ÇÔ¼ö
+        --page;                                      // í˜ì´ì§€ ìˆ˜ ê°ì†Œ (ì´ì „ í˜ì´ì§€ë¡œ ë„˜ê¹€)
+        ChangePage();                                // í˜ì´ì§€ë¥¼ ë°”ê¾¸ëŠ” í•¨ìˆ˜
     }
 
-    void ChangePage() // ÀÌÀü / ´ÙÀ½ ÆäÀÌÁö·Î ³Ñ±æ ¶§ ÆäÀÌÁö°¡ ¹Ù²î´Â ÇÔ¼ö
+    void ChangePage() // ì´ì „ / ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ê¸¸ ë•Œ í˜ì´ì§€ê°€ ë°”ë€ŒëŠ” í•¨ìˆ˜
     {
-        lock_group.gameObject.SetActive(!jelly_unlock_list[page]); // ÇØ±İÇÏÁö ¸øÇÑ ÆäÀÌÁö·Î ³Ñ¾î°¡¸é lock_group ÀÌ¶ó´Â ¿ÀºêÁ§Æ®¸¦ È°¼ºÈ­ÇÔ
+        lock_group.gameObject.SetActive(!jelly_unlock_list[page]); // í•´ê¸ˆí•˜ì§€ ëª»í•œ í˜ì´ì§€ë¡œ ë„˜ì–´ê°€ë©´ lock_group ì´ë¼ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ í™œì„±í™”í•¨
 
-        page_text.text = string.Format("#{0:00}", (page + 1)); // ÆäÀÌÁö ¼ö Áõ°¡½ÃÅ´
-        // ÀçÈ­ÀÇ ¾çÀ» ¹®ÀÚ¿­·Î Ç¥½ÃÇÏ°Å³ª, ½ºÅ³ µ¥¹ÌÁö ºñÀ² (¹éºĞÀ²)°ú °°Àº °ªµéÀ» string.Format()À» ÀÌ¿ëÇØ¼­ ¹®ÀÚ¿­ÀÇ Çü½ÄÀ» Æí¸®ÇÏ°Ô Á¤ÀÇ ÇÒ ¼ö ÀÖÀ½
-        // Format("...{0}, ... {1}", string , 22) -> ...string ... 22 / Áß°ıÈ£ ({ }) »çÀÌ¿¡ ÀÖ´Â ¼ıÀÚ´Â ÄŞ¸¶ (,) µÚ¿¡ Á¤ÀÇÇØ ³õÀº ½ÇÁ¦ º¯¼ö ÀÌ¸§ (¶Ç´Â °ª)ÀÇ ¼ø¼­¸¦ ÀÇ¹ÌÇÔ / ¹è¿­°ú °°ÀÌ 0 ºÎÅÍ ½ÃÀÛÇÔ
+        page_text.text = string.Format("#{0:00}", (page + 1)); // í˜ì´ì§€ ìˆ˜ ì¦ê°€ì‹œí‚´
+        // ì¬í™”ì˜ ì–‘ì„ ë¬¸ìì—´ë¡œ í‘œì‹œí•˜ê±°ë‚˜, ìŠ¤í‚¬ ë°ë¯¸ì§€ ë¹„ìœ¨ (ë°±ë¶„ìœ¨)ê³¼ ê°™ì€ ê°’ë“¤ì„ string.Format()ì„ ì´ìš©í•´ì„œ ë¬¸ìì—´ì˜ í˜•ì‹ì„ í¸ë¦¬í•˜ê²Œ ì •ì˜ í•  ìˆ˜ ìˆìŒ
+        // Format("...{0}, ... {1}", string , 22) -> ...string ... 22 / ì¤‘ê´„í˜¸ ({ }) ì‚¬ì´ì— ìˆëŠ” ìˆ«ìëŠ” ì½¤ë§ˆ (,) ë’¤ì— ì •ì˜í•´ ë†“ì€ ì‹¤ì œ ë³€ìˆ˜ ì´ë¦„ (ë˜ëŠ” ê°’)ì˜ ìˆœì„œë¥¼ ì˜ë¯¸í•¨ / ë°°ì—´ê³¼ ê°™ì´ 0 ë¶€í„° ì‹œì‘í•¨
 
-        // °¢ ¿ÀºêÁ§Æ®ÀÇ Sprite ¶Ç´Â Text¸¦ º¯°æÇÏ¿© ¸¶Ä¡ ´ÙÀ½ ÆäÀÌÁö·Î ³Ñ¾î°¡´Â °ÍÃ³·³ ±¸ÇöÇÔ
+        // ê° ì˜¤ë¸Œì íŠ¸ì˜ Sprite ë˜ëŠ” Textë¥¼ ë³€ê²½í•˜ì—¬ ë§ˆì¹˜ ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ì–´ê°€ëŠ” ê²ƒì²˜ëŸ¼ êµ¬í˜„í•¨
 
-        if (lock_group.activeSelf) // ÇØ±İÇÏÁö ¸øÇÑ ÆäÀÌÁö¸é (lock_group ¿ÀºêÁ§Æ®°¡ È°¼ºÈ­ µÇ¾î ÀÖÀ¸¸é)
+        if (lock_group.activeSelf) // í•´ê¸ˆí•˜ì§€ ëª»í•œ í˜ì´ì§€ë©´ (lock_group ì˜¤ë¸Œì íŠ¸ê°€ í™œì„±í™” ë˜ì–´ ìˆìœ¼ë©´)
         {
-            lock_group_jelly_img.sprite = jelly_spritelist[page];                            // ÇØ±İÇÏÁö ¸øÇÑ Á©¸®ÀÇ ÀÌ¹ÌÁö (Sprite)·Î º¯°æ
-            lock_group_jelatin_text.text = string.Format("{0:n0}", jelly_jelatinlist[page]); // ÇØ±İÇÏÁö ¸øÇÑ Á©¸®ÀÇ ÀÌ¸§ (Text)À¸·Î º¯°æ
-                                                                                             // ÇØ±İÇÏÁö ¸øÇßÀ¸´Ï °¡°İÀ» ¶ç¿ìÁö ¾ÊÀ½
+            lock_group_jelly_img.sprite = jelly_spritelist[page];                            // í•´ê¸ˆí•˜ì§€ ëª»í•œ ì ¤ë¦¬ì˜ ì´ë¯¸ì§€ (Sprite)ë¡œ ë³€ê²½
+            lock_group_jelatin_text.text = string.Format("{0:n0}", jelly_jelatinlist[page]); // í•´ê¸ˆí•˜ì§€ ëª»í•œ ì ¤ë¦¬ì˜ ì´ë¦„ (Text)ìœ¼ë¡œ ë³€ê²½
+                                                                                             // í•´ê¸ˆí•˜ì§€ ëª»í–ˆìœ¼ë‹ˆ ê°€ê²©ì„ ë„ìš°ì§€ ì•ŠìŒ
 
-            lock_group_jelly_img.SetNativeSize();                                            // ÀÌ¹ÌÁö°¡ ¿ø·¡ Å©±â·Î µ¹¾Æ°¡µµ·Ï ÇØ¼­ ÀÌ¹ÌÁö°¡ ±úÁö´Â Çö»óÀ» ¹æÁöÇÔ
+            lock_group_jelly_img.SetNativeSize();                                            // ì´ë¯¸ì§€ê°€ ì›ë˜ í¬ê¸°ë¡œ ëŒì•„ê°€ë„ë¡ í•´ì„œ ì´ë¯¸ì§€ê°€ ê¹¨ì§€ëŠ” í˜„ìƒì„ ë°©ì§€í•¨
         }
-        else                       // ÀÌ¹Ì ÇØ±İÇÑ ÆäÀÌÁö¸é (lock_group ¿ÀºêÁ§Æ®°¡ È°¼ºÈ­ µÇ¾î ÀÖÁö ¾ÊÀ¸¸é)
+        else                       // ì´ë¯¸ í•´ê¸ˆí•œ í˜ì´ì§€ë©´ (lock_group ì˜¤ë¸Œì íŠ¸ê°€ í™œì„±í™” ë˜ì–´ ìˆì§€ ì•Šìœ¼ë©´)
         {
-            unlock_group_jelly_img.sprite = jelly_spritelist[page];                          // ÇØ±İÇÑ Á©¸®ÀÇ ÀÌ¹ÌÁö (Sprite)·Î º¯°æ
-            unlock_group_name_text.text = jelly_namelist[page];                              // ÇØ±İÇÑ Á©¸®ÀÇ ÀÌ¸§ (Text)À¸·Î º¯°æ
-            unlock_group_gold_text.text = string.Format("{0:n0}", jelly_goldlist[page]);     // Á©¸®ÀÇ °¡°İÀ» page ¹øÂ°ÀÇ ÇØ±İÇÑ Á©¸®ÀÇ °¡°İÀ¸·Î ¶ç¿öÁÜ
+            unlock_group_jelly_img.sprite = jelly_spritelist[page];                          // í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ ì´ë¯¸ì§€ (Sprite)ë¡œ ë³€ê²½
+            unlock_group_name_text.text = jelly_namelist[page];                              // í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ ì´ë¦„ (Text)ìœ¼ë¡œ ë³€ê²½
+            unlock_group_gold_text.text = string.Format("{0:n0}", jelly_goldlist[page]);     // ì ¤ë¦¬ì˜ ê°€ê²©ì„ page ë²ˆì§¸ì˜ í•´ê¸ˆí•œ ì ¤ë¦¬ì˜ ê°€ê²©ìœ¼ë¡œ ë„ì›Œì¤Œ
 
-            unlock_group_jelly_img.SetNativeSize();                                          // ÀÌ¹ÌÁö°¡ ¿ø·¡ Å©±â·Î µ¹¾Æ°¡µµ·Ï ÇØ¼­ ÀÌ¹ÌÁö°¡ ±úÁö´Â Çö»óÀ» ¹æÁöÇÔ
+            unlock_group_jelly_img.SetNativeSize();                                          // ì´ë¯¸ì§€ê°€ ì›ë˜ í¬ê¸°ë¡œ ëŒì•„ê°€ë„ë¡ í•´ì„œ ì´ë¯¸ì§€ê°€ ê¹¨ì§€ëŠ” í˜„ìƒì„ ë°©ì§€í•¨
         }
 
-        SoundManager.instance.PlaySound("Button");                                           // ¹öÆ°À» ´©¸£´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Button");                                           // ë²„íŠ¼ì„ ëˆ„ë¥´ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void Unlock() // ÇØ±İ½ÃÅ°±â
+    public void Unlock() // í•´ê¸ˆì‹œí‚¤ê¸°
     {
-        if (jelatin < jelly_jelatinlist[page])         // ÇöÀç Á©¶óÆ¾ÀÌ ÇØ±İÇÏ±â À§ÇÑ Á©¶óÆ¾ ¼öº¸´Ù ÀûÀ¸¸é 
+        if (jelatin < jelly_jelatinlist[page])         // í˜„ì¬ ì ¤ë¼í‹´ì´ í•´ê¸ˆí•˜ê¸° ìœ„í•œ ì ¤ë¼í‹´ ìˆ˜ë³´ë‹¤ ì ìœ¼ë©´ 
         {            
-            SoundManager.instance.PlaySound("Fail");   // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â ÈÄ
-            return;                                    // ½ÇÇà X
+            SoundManager.instance.PlaySound("Fail");   // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥ í›„
+            return;                                    // ì‹¤í–‰ X
         }
 
-        jelly_unlock_list[page] = true;                // ÇöÀç ÆäÀÌÁöÀÇ Á©¸®¸¦ ÇØ±İÇÏ°í
-        ChangePage();                                  // ÆäÀÌÁö¸¦ ¹Ù²Ş
+        jelly_unlock_list[page] = true;                // í˜„ì¬ í˜ì´ì§€ì˜ ì ¤ë¦¬ë¥¼ í•´ê¸ˆí•˜ê³ 
+        ChangePage();                                  // í˜ì´ì§€ë¥¼ ë°”ê¿ˆ
 
-        jelatin -= jelly_jelatinlist[page];            // Á©¶óÆ¾À» ÇØ±İÇÏ±â À§ÇÑ Á©¶óÆ¾ÀÇ ¼ö ¸¸Å­ ÁöºÒÇÔ
+        jelatin -= jelly_jelatinlist[page];            // ì ¤ë¼í‹´ì„ í•´ê¸ˆí•˜ê¸° ìœ„í•œ ì ¤ë¼í‹´ì˜ ìˆ˜ ë§Œí¼ ì§€ë¶ˆí•¨
 
-        SoundManager.instance.PlaySound("Unlock");     // Á©¸®¸¦ ÇØ±İÇÏ´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Unlock");     // ì ¤ë¦¬ë¥¼ í•´ê¸ˆí•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void BuyJelly() // Á©¸® ±¸¸Å ±â´É
+    public void BuyJelly() // ì ¤ë¦¬ êµ¬ë§¤ ê¸°ëŠ¥
     {
-        if (gold < jelly_goldlist[page] || jelly_list.Count >= num_level * 2)            // ÇöÀç °¡Áö°í ÀÖ´Â µ·ÀÌ ÇÊ¿äÇÑ °ñµå ¼öº¸´Ù Àû°Å³ª ÇöÀç °¡Áö°í ÀÖ´Â Á©¸®°¡ Á©¸® ¼ö¿ë·®ÀÇ ÇÑ°èº¸´Ù °°°Å³ª ³ôÀ¸¸é 
+        if (gold < jelly_goldlist[page] || jelly_list.Count >= num_level * 2)            // í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ëˆì´ í•„ìš”í•œ ê³¨ë“œ ìˆ˜ë³´ë‹¤ ì ê±°ë‚˜ í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ì ¤ë¦¬ê°€ ì ¤ë¦¬ ìˆ˜ìš©ëŸ‰ì˜ í•œê³„ë³´ë‹¤ ê°™ê±°ë‚˜ ë†’ìœ¼ë©´ 
         {  
-            SoundManager.instance.PlaySound("Fail");                                     // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â ÈÄ 
-            return;                                                                      // ½ÇÇà X
+            SoundManager.instance.PlaySound("Fail");                                     // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥ í›„ 
+            return;                                                                      // ì‹¤í–‰ X
         }
 
-        gold -= jelly_goldlist[page];                                                    // °ñµå¸¦ ±¸¸Å¿¡ ÇÊ¿äÇÑ °ñµå ¼ö ¸¸Å­ ÁöºÒÇÑ ÈÄ
+        gold -= jelly_goldlist[page];                                                    // ê³¨ë“œë¥¼ êµ¬ë§¤ì— í•„ìš”í•œ ê³¨ë“œ ìˆ˜ ë§Œí¼ ì§€ë¶ˆí•œ í›„
 
-        GameObject obj = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity); // Instantiate·Î Quaternion.identity Áï, È¸ÀüÀÌ ¾ø´Â ¿ÀºêÁ§Æ® obj »ı¼º 
-        Jelly jelly = obj.GetComponent<Jelly>();                                         // ¹æ±İ »ı¼ºµÈ obj ¿ÀºêÁ§Æ®°¡ Á©¸®ÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Áö°Ô ÇÔ
-        obj.name = "Jelly " + page;                                                      // obj ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§À» "Á©¸® + ÆäÀÌÁö ¼ö" ·Î ¸¸µê
-        jelly.id = page;                                                                 // Á©¸®ÀÇ id¸¦ ÆäÀÌÁö ¼ö·Î ÀúÀå
-        jelly.sprite_renderer.sprite = jelly_spritelist[page];                           // ÇØ´ç ÆäÀÌÁö¿¡ ÀÖ´Â Á©¸®°¡ »ı¼ºµÇµµ·Ï ÇÔ
+        GameObject obj = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity); // Instantiateë¡œ Quaternion.identity ì¦‰, íšŒì „ì´ ì—†ëŠ” ì˜¤ë¸Œì íŠ¸ obj ìƒì„± 
+        Jelly jelly = obj.GetComponent<Jelly>();                                         // ë°©ê¸ˆ ìƒì„±ëœ obj ì˜¤ë¸Œì íŠ¸ê°€ ì ¤ë¦¬ì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì§€ê²Œ í•¨
+        obj.name = "Jelly " + page;                                                      // obj ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ì„ "ì ¤ë¦¬ + í˜ì´ì§€ ìˆ˜" ë¡œ ë§Œë“¦
+        jelly.id = page;                                                                 // ì ¤ë¦¬ì˜ idë¥¼ í˜ì´ì§€ ìˆ˜ë¡œ ì €ì¥
+        jelly.sprite_renderer.sprite = jelly_spritelist[page];                           // í•´ë‹¹ í˜ì´ì§€ì— ìˆëŠ” ì ¤ë¦¬ê°€ ìƒì„±ë˜ë„ë¡ í•¨
 
-        jelly_list.Add(jelly);                                                           // ±× ´ÙÀ½ Á©¸®¸¦ »ı¼ºÇÔ
+        jelly_list.Add(jelly);                                                           // ê·¸ ë‹¤ìŒ ì ¤ë¦¬ë¥¼ ìƒì„±í•¨
 
-        SoundManager.instance.PlaySound("Buy");                                          // Á©¸®¸¦ ±¸¸ÅÇÏ´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Buy");                                          // ì ¤ë¦¬ë¥¼ êµ¬ë§¤í•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void NumUpgrade() // Á©¸®¸¦ ¼ö¿ëÇÒ ¼ö ÀÖ´Â ÇÑ°è¸¦ ´Ã·ÁÁÖ´Â ÇÔ¼ö
+    public void NumUpgrade() // ì ¤ë¦¬ë¥¼ ìˆ˜ìš©í•  ìˆ˜ ìˆëŠ” í•œê³„ë¥¼ ëŠ˜ë ¤ì£¼ëŠ” í•¨ìˆ˜
     {
-        if (gold < num_gold_list[num_level])                                        // ÇöÀç °¡Áö°í ÀÖ´Â µ·ÀÌ ÇÊ¿äÇÑ °ñµå ¼öº¸´Ù ÀûÀ¸¸é
+        if (gold < num_gold_list[num_level])                                        // í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ëˆì´ í•„ìš”í•œ ê³¨ë“œ ìˆ˜ë³´ë‹¤ ì ìœ¼ë©´
         { 
-            SoundManager.instance.PlaySound("Fail");                                // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â ÈÄ
-            return;                                                                 // ½ÇÇà X   
+            SoundManager.instance.PlaySound("Fail");                                // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥ í›„
+            return;                                                                 // ì‹¤í–‰ X   
         }
 
-        gold -= num_gold_list[num_level++];                                         // °ñµå¸¦ ±¸¸Å¿¡ ÇÊ¿äÇÑ °ñµå ¼ö ¸¸Å­ ÁöºÒÇÑ ÈÄ
+        gold -= num_gold_list[num_level++];                                         // ê³¨ë“œë¥¼ êµ¬ë§¤ì— í•„ìš”í•œ ê³¨ë“œ ìˆ˜ ë§Œí¼ ì§€ë¶ˆí•œ í›„
 
-        num_sub_text.text = "Á©¸® ¼ö¿ë·® " + num_level * 2;                         // ±â´ÉÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ ¶ç¿ò
+        num_sub_text.text = "ì ¤ë¦¬ ìˆ˜ìš©ëŸ‰ " + num_level * 2;                          // ê¸°ëŠ¥ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ë„ì›€
 
-        if (num_level >= 5) num_btn.gameObject.SetActive(false);                    // ¸¸¾à ¹æ±İÀÇ ¾÷±×·¹ÀÌµå·Î ÃÖ°í ·¹º§À» ´Ş¼ºÇÑ »óÅÂ°¡ µÈ´Ù¸é ¹öÆ°À» ¾ø¾Ö°í
-        else num_btn_text.text = string.Format("{0:n0}", num_gold_list[num_level]); // ±×°Ô ¾Æ´Ï¶ó¸é ±× ´ÙÀ½ ·¹º§ÀÇ °ñµå¸¦ º¸¿©ÁÜ
+        if (num_level >= 5) num_btn.gameObject.SetActive(false);                    // ë§Œì•½ ë°©ê¸ˆì˜ ì—…ê·¸ë ˆì´ë“œë¡œ ìµœê³  ë ˆë²¨ì„ ë‹¬ì„±í•œ ìƒíƒœê°€ ëœë‹¤ë©´ ë²„íŠ¼ì„ ì—†ì• ê³ 
+        else num_btn_text.text = string.Format("{0:n0}", num_gold_list[num_level]); // ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ê·¸ ë‹¤ìŒ ë ˆë²¨ì˜ ê³¨ë“œë¥¼ ë³´ì—¬ì¤Œ
 
-        SoundManager.instance.PlaySound("Buy");                                     // ¾÷±×·¹ÀÌµå ÇÏ´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Buy");                                     // ì—…ê·¸ë ˆì´ë“œ í•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void ClickUpgrade() // Á©¸®¸¦ Å¬¸¯ÇÒ ¶§ ¾ò´Â ÀçÈ­¸¦ ´Ã·ÁÁÖ´Â ÇÔ¼ö
+    public void ClickUpgrade() // ì ¤ë¦¬ë¥¼ í´ë¦­í•  ë•Œ ì–»ëŠ” ì¬í™”ë¥¼ ëŠ˜ë ¤ì£¼ëŠ” í•¨ìˆ˜
     {
-        if (gold < click_gold_list[click_level])                                          // ÇöÀç °¡Áö°í ÀÖ´Â µ·ÀÌ ÇÊ¿äÇÑ °ñµå ¼öº¸´Ù ÀûÀ¸¸é    
+        if (gold < click_gold_list[click_level])                                          // í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ëˆì´ í•„ìš”í•œ ê³¨ë“œ ìˆ˜ë³´ë‹¤ ì ìœ¼ë©´    
         {
-            SoundManager.instance.PlaySound("Fail");                                      // ¾î¶°ÇÑ µ¿ÀÛ¿¡ ½ÇÆĞÇß´Ù´Â »ç¿îµå Ãâ·Â ÈÄ 
-            return;                                                                       // ½ÇÇà X                           
+            SoundManager.instance.PlaySound("Fail");                                      // ì–´ë– í•œ ë™ì‘ì— ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥ í›„ 
+            return;                                                                       // ì‹¤í–‰ X                           
         }
 
-        gold -= click_gold_list[click_level++];                                           // °ñµå¸¦ ±¸¸Å¿¡ ÇÊ¿äÇÑ °ñµå ¼ö ¸¸Å­ ÁöºÒÇÑ ÈÄ
+        gold -= click_gold_list[click_level++];                                           // ê³¨ë“œë¥¼ êµ¬ë§¤ì— í•„ìš”í•œ ê³¨ë“œ ìˆ˜ ë§Œí¼ ì§€ë¶ˆí•œ í›„
 
-        click_sub_text.text = "Å¬¸¯ »ı»ê·® X " + click_level;                             // ±â´ÉÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®¸¦ ¶ç¿ò
+        click_sub_text.text = "í´ë¦­ ìƒì‚°ëŸ‰ X " + click_level;                              // ê¸°ëŠ¥ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ë¥¼ ë„ì›€
 
-        if (click_level >= 5) click_btn.gameObject.SetActive(false);                      // ¸¸¾à ¹æ±İÀÇ ¾÷±×·¹ÀÌµå·Î ÃÖ°í ·¹º§À» ´Ş¼ºÇÑ »óÅÂ°¡ µÈ´Ù¸é ¹öÆ°À» ¾ø¾Ö°í
-        else click_btn_text.text = string.Format("{0:n0}", click_gold_list[click_level]); // ±×°Ô ¾Æ´Ï¶ó¸é ±× ´ÙÀ½ ·¹º§ÀÇ °ñµå¸¦ º¸¿©ÁÜ
+        if (click_level >= 5) click_btn.gameObject.SetActive(false);                      // ë§Œì•½ ë°©ê¸ˆì˜ ì—…ê·¸ë ˆì´ë“œë¡œ ìµœê³  ë ˆë²¨ì„ ë‹¬ì„±í•œ ìƒíƒœê°€ ëœë‹¤ë©´ ë²„íŠ¼ì„ ì—†ì• ê³ 
+        else click_btn_text.text = string.Format("{0:n0}", click_gold_list[click_level]); // ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ê·¸ ë‹¤ìŒ ë ˆë²¨ì˜ ê³¨ë“œë¥¼ ë³´ì—¬ì¤Œ
 
-        SoundManager.instance.PlaySound("Buy");                                           // ¾÷±×·¹ÀÌµå ÇÏ´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Buy");                                           // ì—…ê·¸ë ˆì´ë“œ í•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    public void SetRandomJelatin() // ·£´ıÇÏ°Ô ¾òÀ» Á©¶óÆ¾ÀÇ °ªÀ» ¼³Á¤ÇÏ°í ±× ¼³Á¤ °ª¿¡ µû¸¥ ÅØ½ºÆ® º¯°æ
+    public void SetRandomJelatin() // ëœë¤í•˜ê²Œ ì–»ì„ ì ¤ë¼í‹´ì˜ ê°’ì„ ì„¤ì •í•˜ê³  ê·¸ ì„¤ì • ê°’ì— ë”°ë¥¸ í…ìŠ¤íŠ¸ ë³€ê²½
     {
-        random_jelatin = Random.Range(10, 1001);      // 10 ~ 1000±îÁöÀÇ ¼ıÀÚÁß ÇÏ³ª 
-        random_jelatin_variable = Random.Range(0, 6); // 0 ~ 5±îÁöÀÇ ¼ıÀÚÁß ÇÏ³ª
+        random_jelatin = Random.Range(10, 1001);      // 10 ~ 1000ê¹Œì§€ì˜ ìˆ«ìì¤‘ í•˜ë‚˜ 
+        random_jelatin_variable = Random.Range(0, 6); // 0 ~ 5ê¹Œì§€ì˜ ìˆ«ìì¤‘ í•˜ë‚˜
         random_jelatin_value = random_jelatin * random_jelatin_variable;
 
-        // ·£´ıÀ¸·Î ¾ò´Â Á©¶óÆ¾ ¼ö¿¡ µû¸¥ ÅØ½ºÆ® º¯°æ
-        if (random_jelatin_value == 5000) random_J_text = "ÃÖ´ë Á©¶óÆ¾ÀÔ´Ï´Ù! Á©¸®, ±×´Â ½ÅÀÌ¾ß!";
-        else if (random_jelatin_value >= 4000) random_J_text = "Á»¸¸ ´õ °¡Á®¿À¸é ÃÖ´ë Á©¶óÆ¾ÀÎµ¥¿ä?!";
-        else if (random_jelatin_value > 2500) random_J_text = "ÃÖ´ë Á©¶óÆ¾ÀÇ Àı¹İ ÀÌ»óÀ» °¡Á®¿Ô¾î¿ä!";
-        else if (random_jelatin_value >= 2000) random_J_text = "Á¶±İ¸¸ ´õ °¡Á®¿ÔÀ¸¸é...ÂÁ";
-        else if (random_jelatin_value >= 1000) random_J_text = "±×·¡µµ ÀÌ°Ô ¾îµğ¿¡¿ä!";
-        else if (random_jelatin_value >= 500) random_J_text = "»ìÂ¦ ¾Æ½±³×¿ä!";
-        else if (random_jelatin_value == 0) random_J_text = "Á©¸® ¸ÛÃ»ÀÌ~~~";
-        else random_J_text = "³Ê¹« Á¶±İ °¡Á®¿À´Â°Å ¾Æ´Ñ°¡¿ä?! Â¥´Ù Â¥~";
+        // ëœë¤ìœ¼ë¡œ ì–»ëŠ” ì ¤ë¼í‹´ ìˆ˜ì— ë”°ë¥¸ í…ìŠ¤íŠ¸ ë³€ê²½
+        if (random_jelatin_value == 5000) random_J_text = "ìµœëŒ€ ì ¤ë¼í‹´ì…ë‹ˆë‹¤! ì ¤ë¦¬, ê·¸ëŠ” ì‹ ì´ì•¼!";
+        else if (random_jelatin_value >= 4000) random_J_text = "ì¢€ë§Œ ë” ê°€ì ¸ì˜¤ë©´ ìµœëŒ€ ì ¤ë¼í‹´ì¸ë°ìš”?!";
+        else if (random_jelatin_value > 2500) random_J_text = "ìµœëŒ€ ì ¤ë¼í‹´ì˜ ì ˆë°˜ ì´ìƒì„ ê°€ì ¸ì™”ì–´ìš”!";
+        else if (random_jelatin_value >= 2000) random_J_text = "ì¡°ê¸ˆë§Œ ë” ê°€ì ¸ì™”ìœ¼ë©´...ì©";
+        else if (random_jelatin_value >= 1000) random_J_text = "ê·¸ë˜ë„ ì´ê²Œ ì–´ë””ì—ìš”!";
+        else if (random_jelatin_value >= 500) random_J_text = "ì‚´ì§ ì•„ì‰½ë„¤ìš”!";
+        else if (random_jelatin_value == 0) random_J_text = "ì ¤ë¦¬ ë©ì²­ì´~~~";
+        else random_J_text = "ë„ˆë¬´ ì¡°ê¸ˆ ê°€ì ¸ì˜¤ëŠ”ê±° ì•„ë‹Œê°€ìš”?! ì§œë‹¤ ì§œ~";
 
-        random_jelatin_text.text = string.Format("Á©¸®°¡ Á©¶óÆ¾ {0}°³¸¦ °¡Á®¿Ô½À´Ï´Ù!\n {1}", random_jelatin_value, random_J_text); // ÅØ½ºÆ® º¯°æÇÏ±â
+        random_jelatin_text.text = string.Format("ì ¤ë¦¬ê°€ ì ¤ë¼í‹´ {0}ê°œë¥¼ ê°€ì ¸ì™”ìŠµë‹ˆë‹¤!\n {1}", random_jelatin_value, random_J_text); // í…ìŠ¤íŠ¸ ë³€ê²½í•˜ê¸°
     }
 
-    IEnumerator GetRandomJelatin() // SetRandomJelatin() ÇÔ¼ö¿¡¼­ ¼³Á¤ÇÑ Á©¶óÆ¾ °ªÀ» ¹Ş´Â ÇÔ¼ö  /  ÄÚ·çÆ¾ ÇÔ¼ö
+    IEnumerator GetRandomJelatin() // SetRandomJelatin() í•¨ìˆ˜ì—ì„œ ì„¤ì •í•œ ì ¤ë¼í‹´ ê°’ì„ ë°›ëŠ” í•¨ìˆ˜  /  ì½”ë£¨í‹´ í•¨ìˆ˜
     {
-        jelatin_delay = Random.Range(20, 41);                                            // Á©¶óÆ¾À» ¾ò´Â °£°İ -> 20 ~ 40ÃÊ »çÀÌ
-        jelatin_text_delay = 3;                                                        // Á©¶óÆ¾À» ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®°¡ È­¸é¿¡ ¶ç¿öÁ® ÀÖ´Â ½Ã°£
+        jelatin_delay = Random.Range(20, 41);                                          // ì ¤ë¼í‹´ì„ ì–»ëŠ” ê°„ê²© -> 20 ~ 40ì´ˆ ì‚¬ì´
+        jelatin_text_delay = 3;                                                        // ì ¤ë¼í‹´ì„ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ê°€ í™”ë©´ì— ë„ì›Œì ¸ ìˆëŠ” ì‹œê°„
 
         isGetJelatin = true;
-        SetRandomJelatin();                                                            // ¾òÀ» Á©¶óÆ¾ °ªÀ» ¼³Á¤ÇÏ°í
+        SetRandomJelatin();                                                            // ì–»ì„ ì ¤ë¼í‹´ ê°’ì„ ì„¤ì •í•˜ê³ 
 
         isJ_Text = true;
-        random_jelatin_obj.gameObject.SetActive(isJ_Text);                             // ÅØ½ºÆ® ¶ç¿î ´ÙÀ½
+        random_jelatin_obj.gameObject.SetActive(isJ_Text);                             // í…ìŠ¤íŠ¸ ë„ìš´ ë‹¤ìŒ
 
-        yield return new WaitForSeconds(jelatin_text_delay);                           // ÅØ½ºÆ®¸¦ ¶ç¿ì´Â ½Ã°£¸¸Å­ ±â´Ù¸° ÈÄ
+        yield return new WaitForSeconds(jelatin_text_delay);                           // í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ” ì‹œê°„ë§Œí¼ ê¸°ë‹¤ë¦° í›„
 
         isJ_Text = false;
-        random_jelatin_obj.gameObject.SetActive(isJ_Text);                             // ÅØ½ºÆ®¸¦ ³»¸®°í
+        random_jelatin_obj.gameObject.SetActive(isJ_Text);                             // í…ìŠ¤íŠ¸ë¥¼ ë‚´ë¦¬ê³ 
 
-        jelatin += random_jelatin_value;                                               // Á©¶óÆ¾ È¹µæ ÈÄ
+        jelatin += random_jelatin_value;                                               // ì ¤ë¼í‹´ íšë“ í›„
 
-        if (random_jelatin_value != 0) SoundManager.instance.PlaySound("Get Jelatin"); // ¾ò´Â Á©¶óÆ¾ÀÌ 0ÀÌ ¾Æ´Ï¸é Á©¶óÆ¾À» È¹µæÇÏ´Â ¼Ò¸® Ãâ·ÂÇÏ°í
-        else SoundManager.instance.PlaySound("Touch");                                 // ¾ò´Â Á©¶óÆ¾ÀÌ 0ÀÌ¸é ÅÍÄ¡ÇÏ´Â ¼Ò¸®¸¦ ³»°í ³ª¼­ (ÅÍÄ¡ÇÏ´Â ¼Ò¸®Áö¸¸ ¾î¿ï¸²)
+        if (random_jelatin_value != 0) SoundManager.instance.PlaySound("Get Jelatin"); // ì–»ëŠ” ì ¤ë¼í‹´ì´ 0ì´ ì•„ë‹ˆë©´ ì ¤ë¼í‹´ì„ íšë“í•˜ëŠ” ì†Œë¦¬ ì¶œë ¥í•˜ê³ 
+        else SoundManager.instance.PlaySound("Touch");                                 // ì–»ëŠ” ì ¤ë¼í‹´ì´ 0ì´ë©´ í„°ì¹˜í•˜ëŠ” ì†Œë¦¬ë¥¼ ë‚´ê³  ë‚˜ì„œ (í„°ì¹˜í•˜ëŠ” ì†Œë¦¬ì§€ë§Œ ì–´ìš¸ë¦¼)
 
-        yield return new WaitForSeconds(jelatin_delay);                                // Á©¶óÆ¾À» ¾ò´Â °£°İ¸¸Å­ ±â´Ù¸²
+        yield return new WaitForSeconds(jelatin_delay);                                // ì ¤ë¼í‹´ì„ ì–»ëŠ” ê°„ê²©ë§Œí¼ ê¸°ë‹¤ë¦¼
         isGetJelatin = false;
     }
 
-    public void SetRandomGold() // ·£´ıÇÏ°Ô ¾òÀ» °ñµåÀÇ °ªÀ» ¼³Á¤ÇÏ°í ±× ¼³Á¤ °ª¿¡ µû¸¥ ÅØ½ºÆ® º¯°æ
+    public void SetRandomGold() // ëœë¤í•˜ê²Œ ì–»ì„ ê³¨ë“œì˜ ê°’ì„ ì„¤ì •í•˜ê³  ê·¸ ì„¤ì • ê°’ì— ë”°ë¥¸ í…ìŠ¤íŠ¸ ë³€ê²½
     {
-        random_gold = Random.Range(0, 2501);       // 0 ~ 2500±îÁöÀÇ ¼ıÀÚÁß ÇÏ³ª 
-        random_gold_variable = Random.Range(0, 6); // 0 ~ 5±îÁöÀÇ ¼ıÀÚÁß ÇÏ³ª
+        random_gold = Random.Range(0, 2501);       // 0 ~ 2500ê¹Œì§€ì˜ ìˆ«ìì¤‘ í•˜ë‚˜ 
+        random_gold_variable = Random.Range(0, 6); // 0 ~ 5ê¹Œì§€ì˜ ìˆ«ìì¤‘ í•˜ë‚˜
         random_gold_value = random_gold * random_gold_variable;
 
-        // ·£´ıÀ¸·Î ¾ò´Â °ñµå ¼ö¿¡ µû¸¥ ÅØ½ºÆ® º¯°æ
-        if (random_gold_value == 12500) random_G_text = "ÃÖ´ë °ñµåÀÔ´Ï´Ù! Á©¸®, ±×´Â ½ÅÀÌ¾ß!";
-        else if (random_gold_value >= 10000) random_G_text = "Á»¸¸ ´õ °¡Á®¿À¸é ÃÖ´ë °ñµåÀÎµ¥¿ä?!";
-        else if (random_gold_value > 6250) random_G_text = "ÃÖ´ë °ñµåÀÇ Àı¹İ ÀÌ»óÀ» °¡Á®¿Ô¾î¿ä!";
-        else if (random_gold_value >= 4500) random_G_text = "Á¶±İ¸¸ ´õ °¡Á®¿ÔÀ¸¸é...ÂÁ";
-        else if (random_gold_value >= 3250) random_G_text = "±×·¡µµ ÀÌ°Ô ¾îµğ¿¡¿ä!";
-        else if (random_gold_value >= 1500) random_G_text = "»ìÂ¦ ¾Æ½±³×¿ä!";
-        else if (random_gold_value == 0) random_G_text = "Á©¸® ¸ÛÃ»ÀÌ~~~";
-        else random_G_text = "³Ê¹« Á¶±İ °¡Á®¿À´Â°Å ¾Æ´Ñ°¡¿ä?! Â¥´Ù Â¥~";
+        // ëœë¤ìœ¼ë¡œ ì–»ëŠ” ê³¨ë“œ ìˆ˜ì— ë”°ë¥¸ í…ìŠ¤íŠ¸ ë³€ê²½
+        if (random_gold_value == 12500) random_G_text = "ìµœëŒ€ ê³¨ë“œì…ë‹ˆë‹¤! ì ¤ë¦¬, ê·¸ëŠ” ì‹ ì´ì•¼!";
+        else if (random_gold_value >= 10000) random_G_text = "ì¢€ë§Œ ë” ê°€ì ¸ì˜¤ë©´ ìµœëŒ€ ê³¨ë“œì¸ë°ìš”?!";
+        else if (random_gold_value > 6250) random_G_text = "ìµœëŒ€ ê³¨ë“œì˜ ì ˆë°˜ ì´ìƒì„ ê°€ì ¸ì™”ì–´ìš”!";
+        else if (random_gold_value >= 4500) random_G_text = "ì¡°ê¸ˆë§Œ ë” ê°€ì ¸ì™”ìœ¼ë©´...ì©";
+        else if (random_gold_value >= 3250) random_G_text = "ê·¸ë˜ë„ ì´ê²Œ ì–´ë””ì—ìš”!";
+        else if (random_gold_value >= 1500) random_G_text = "ì‚´ì§ ì•„ì‰½ë„¤ìš”!";
+        else if (random_gold_value == 0) random_G_text = "ì ¤ë¦¬ ë©ì²­ì´~~~";
+        else random_G_text = "ë„ˆë¬´ ì¡°ê¸ˆ ê°€ì ¸ì˜¤ëŠ”ê±° ì•„ë‹Œê°€ìš”?! ì§œë‹¤ ì§œ~";
 
-        random_gold_text.text = string.Format("Á©¸®°¡ °ñµå {0}°³¸¦ °¡Á®¿Ô½À´Ï´Ù!\n {1}", random_gold_value, random_G_text); // ÅØ½ºÆ® º¯°æÇÏ±â
+        random_gold_text.text = string.Format("ì ¤ë¦¬ê°€ ê³¨ë“œ {0}ê°œë¥¼ ê°€ì ¸ì™”ìŠµë‹ˆë‹¤!\n {1}", random_gold_value, random_G_text); // í…ìŠ¤íŠ¸ ë³€ê²½í•˜ê¸°
     }
 
-    IEnumerator GetRandomGold() // SetRandomGold() ÇÔ¼ö¿¡¼­ ¼³Á¤ÇÑ °ñµå °ªÀ» ¹Ş´Â ÇÔ¼ö  /  ÄÚ·çÆ¾ ÇÔ¼ö
+    IEnumerator GetRandomGold() // SetRandomGold() í•¨ìˆ˜ì—ì„œ ì„¤ì •í•œ ê³¨ë“œ ê°’ì„ ë°›ëŠ” í•¨ìˆ˜  /  ì½”ë£¨í‹´ í•¨ìˆ˜
     {
-        gold_delay = Random.Range(30, 46);                                       // °ñµå¸¦ ¾ò´Â °£°İ -> 30 ~ 45ÃÊ »çÀÌ
-        gold_text_delay = 3;                                                     // °ñµå¸¦ ¾ò¾ú´Ù´Â »ç½ÇÀ» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ®°¡ È­¸é¿¡ ¶ç¿öÁ® ÀÖ´Â ½Ã°£
+        gold_delay = Random.Range(30, 46);                                       // ê³¨ë“œë¥¼ ì–»ëŠ” ê°„ê²© -> 30 ~ 45ì´ˆ ì‚¬ì´
+        gold_text_delay = 3;                                                     // ê³¨ë“œë¥¼ ì–»ì—ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ê°€ í™”ë©´ì— ë„ì›Œì ¸ ìˆëŠ” ì‹œê°„
 
         isGetGold = true;
-        SetRandomGold();                                                         // ¾òÀ» °ñµå °ªÀ» ¼³Á¤ÇÏ°í
+        SetRandomGold();                                                         // ì–»ì„ ê³¨ë“œ ê°’ì„ ì„¤ì •í•˜ê³ 
 
         isG_Text = true;
-        random_gold_obj.gameObject.SetActive(isG_Text);                          // ÅØ½ºÆ® ¶ç¿î ´ÙÀ½
+        random_gold_obj.gameObject.SetActive(isG_Text);                          // í…ìŠ¤íŠ¸ ë„ìš´ ë‹¤ìŒ
 
-        yield return new WaitForSeconds(gold_text_delay);                        // ÅØ½ºÆ®¸¦ ¶ç¿ì´Â ½Ã°£¸¸Å­ ±â´Ù¸° ÈÄ
+        yield return new WaitForSeconds(gold_text_delay);                        // í…ìŠ¤íŠ¸ë¥¼ ë„ìš°ëŠ” ì‹œê°„ë§Œí¼ ê¸°ë‹¤ë¦° í›„
 
         isG_Text = false; 
-        random_gold_obj.gameObject.SetActive(isG_Text);                          // ÅØ½ºÆ®¸¦ ³»¸®°í
+        random_gold_obj.gameObject.SetActive(isG_Text);                          // í…ìŠ¤íŠ¸ë¥¼ ë‚´ë¦¬ê³ 
 
-        gold += random_gold_value;                                               // °ñµå È¹µæ ÈÄ
+        gold += random_gold_value;                                               // ê³¨ë“œ íšë“ í›„
 
-        if (random_gold_value != 0) SoundManager.instance.PlaySound("Get Gold"); // ¾ò´Â °ñµå°¡ 0ÀÌ ¾Æ´Ï¸é °ñµå¸¦ È¹µæÇÏ´Â ¼Ò¸® Ãâ·ÂÇÏ°í
-        else SoundManager.instance.PlaySound("Touch");                           // ¾ò´Â °ñµå°¡ 0ÀÌ¸é ÅÍÄ¡ÇÏ´Â ¼Ò¸®¸¦ ³»°í ³ª¼­ (ÅÍÄ¡ÇÏ´Â ¼Ò¸®Áö¸¸ ¾î¿ï¸²)
+        if (random_gold_value != 0) SoundManager.instance.PlaySound("Get Gold"); // ì–»ëŠ” ê³¨ë“œê°€ 0ì´ ì•„ë‹ˆë©´ ê³¨ë“œë¥¼ íšë“í•˜ëŠ” ì†Œë¦¬ ì¶œë ¥í•˜ê³ 
+        else SoundManager.instance.PlaySound("Touch");                           // ì–»ëŠ” ê³¨ë“œê°€ 0ì´ë©´ í„°ì¹˜í•˜ëŠ” ì†Œë¦¬ë¥¼ ë‚´ê³  ë‚˜ì„œ (í„°ì¹˜í•˜ëŠ” ì†Œë¦¬ì§€ë§Œ ì–´ìš¸ë¦¼)
 
-        yield return new WaitForSeconds(gold_delay);                             // °ñµå¸¦ ¾ò´Â °£°İ¸¸Å­ ±â´Ù¸²
+        yield return new WaitForSeconds(gold_delay);                             // ê³¨ë“œë¥¼ ì–»ëŠ” ê°„ê²©ë§Œí¼ ê¸°ë‹¤ë¦¼
         isGetGold = false;
     }
 
-    public void ChangeBgm(int bgm_button) // ¹è°æÀ½ º¯°æ ¹öÆ°À» ´­·¶À» ¶§  /  ¹è¿­ bgm_button Áß ´©¸¥ ¹öÆ°ÀÇ ÀÎµ¦½º °ªÀ» intÇüÀ¸·Î ¹Ş¾Æ¼­ ¸Å°³º¯¼ö·Î »ç¿ëÇÔ 
+    public void ChangeBgm(int bgm_button) // ë°°ê²½ìŒ ë³€ê²½ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ  /  ë°°ì—´ bgm_button ì¤‘ ëˆ„ë¥¸ ë²„íŠ¼ì˜ ì¸ë±ìŠ¤ ê°’ì„ intí˜•ìœ¼ë¡œ ë°›ì•„ì„œ ë§¤ê°œë³€ìˆ˜ë¡œ ì‚¬ìš©í•¨ 
     {
-        index = bgm_button;                                       // ÀúÀåÇÏ±â ½±°Ô bgm_buttonÀÇ ÀÎµ¦½º °ªÀ» index º¯¼ö·Î ´ãÀ½
-        bgm_player.clip = SoundManager.instance.bgm_clips[index]; // ¹è°æÀ½ ÇÃ·¹ÀÌ¾î¿¡ ¹æ±İ ÀúÀåÇÑ index °ª¿¡ ÇØ´çÇÏ´Â ¹è°æÀ½À¸·Î ¼³Á¤ ÈÄ
-        bgm_player.Play();                                        // ¹è°æÀ½À» ÇÃ·¹ÀÌÇÔ
+        index = bgm_button;                                       // ì €ì¥í•˜ê¸° ì‰½ê²Œ bgm_buttonì˜ ì¸ë±ìŠ¤ ê°’ì„ index ë³€ìˆ˜ë¡œ ë‹´ìŒ
+        bgm_player.clip = SoundManager.instance.bgm_clips[index]; // ë°°ê²½ìŒ í”Œë ˆì´ì–´ì— ë°©ê¸ˆ ì €ì¥í•œ index ê°’ì— í•´ë‹¹í•˜ëŠ” ë°°ê²½ìŒìœ¼ë¡œ ì„¤ì • í›„
+        bgm_player.Play();                                        // ë°°ê²½ìŒì„ í”Œë ˆì´í•¨
     }
 
-    void LoadData() // µ¥ÀÌÅÍ ºÒ·¯¿À±â
+    void LoadData() // ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
     {
-        lock_group.gameObject.SetActive(!jelly_unlock_list[page]); // ÇØ±İ µÇ¾î ÀÖÁö ¾ÊÀº Á©¸® ¸®½ºÆ®¸¦ ºÒ·¯¿È
+        lock_group.gameObject.SetActive(!jelly_unlock_list[page]); // í•´ê¸ˆ ë˜ì–´ ìˆì§€ ì•Šì€ ì ¤ë¦¬ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¶ˆëŸ¬ì˜´
 
-        bgm_player.clip = SoundManager.instance.bgm_clips[index];  // ¹è°æÀ½ ºÒ·¯¿È
-        bgm_player.Play();                                         // ¹è°æÀ½ ºÒ·¯¿È
+        bgm_player.clip = SoundManager.instance.bgm_clips[index];  // ë°°ê²½ìŒ ë¶ˆëŸ¬ì˜´
+        bgm_player.Play();                                         // ë°°ê²½ìŒ ë¶ˆëŸ¬ì˜´
 
-        for (int i = 0; i < jelly_data_list.Count; ++i) // ÀúÀå ÇÒ ¶§ ÀÖ¾ú´ø Á©¸®ÀÇ °³¼ö ¸¸Å­ ¹İº¹
+        for (int i = 0; i < jelly_data_list.Count; ++i) // ì €ì¥ í•  ë•Œ ìˆì—ˆë˜ ì ¤ë¦¬ì˜ ê°œìˆ˜ ë§Œí¼ ë°˜ë³µ
         {
-            GameObject obj = Instantiate(prefab, jelly_data_list[i].pos, Quaternion.identity); // °¢°¢ÀÇ Á©¸®µéÀÌ ÀÖ¾ú´ø À§Ä¡¿¡ Á©¸®µé »ı¼º
-            Jelly jelly = obj.GetComponent<Jelly>();                                           // °¢°¢ÀÇ Á©¸®µé¿¡°Ô Jelly ÄÄÆÛ³ÍÆ®¸¦ °¡Áö°Ô ÇÔ
-            jelly.id = jelly_data_list[i].id;                                                  // °¢°¢ÀÇ Á©¸®µé¿¡°Ô idºÎ¿©
-            jelly.level = jelly_data_list[i].level;                                            // °¢°¢ÀÇ Á©¸®µé¿¡°Ô levelºÎ¿©
-            jelly.exp = jelly_data_list[i].exp;                                                // °¢°¢ÀÇ Á©¸®µé¿¡°Ô °æÇèÄ¡ºÎ¿©
-            jelly.sprite_renderer.sprite = jelly_spritelist[jelly.id];                         // °¢°¢ÀÇ Á©¸®µé¿¡°Ô id¿¡ ¸Â´Â Á¾·ùÀÇ Á©¸®·Î ·»´õ¸µÇÔ
-            jelly.anim.runtimeAnimatorController = level_ac[jelly.level - 1];                  // °¢°¢ÀÇ Á©¸®µé¿¡°Ô ÀÚ½ÅÀÇ ·¹º§¿¡ ¸Â´Â ¾Ö´Ï¸ÅÀÌ¼Ç (Å©±â)À» °¡Áö°Ô ÇÔ
-            obj.name = "Jelly " + jelly.id;                                                    // °¢°¢ÀÇ Á©¸®µé¿¡°Ô ¸Â´Â ÀÌ¸§ ºÎ¿©
+            GameObject obj = Instantiate(prefab, jelly_data_list[i].pos, Quaternion.identity); // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì´ ìˆì—ˆë˜ ìœ„ì¹˜ì— ì ¤ë¦¬ë“¤ ìƒì„±
+            Jelly jelly = obj.GetComponent<Jelly>();                                           // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ Jelly ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì§€ê²Œ í•¨
+            jelly.id = jelly_data_list[i].id;                                                  // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ idë¶€ì—¬
+            jelly.level = jelly_data_list[i].level;                                            // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ levelë¶€ì—¬
+            jelly.exp = jelly_data_list[i].exp;                                                // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ ê²½í—˜ì¹˜ë¶€ì—¬
+            jelly.sprite_renderer.sprite = jelly_spritelist[jelly.id];                         // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ idì— ë§ëŠ” ì¢…ë¥˜ì˜ ì ¤ë¦¬ë¡œ ë Œë”ë§í•¨
+            jelly.anim.runtimeAnimatorController = level_ac[jelly.level - 1];                  // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ ìì‹ ì˜ ë ˆë²¨ì— ë§ëŠ” ì• ë‹ˆë§¤ì´ì…˜ (í¬ê¸°)ì„ ê°€ì§€ê²Œ í•¨
+            obj.name = "Jelly " + jelly.id;                                                    // ê°ê°ì˜ ì ¤ë¦¬ë“¤ì—ê²Œ ë§ëŠ” ì´ë¦„ ë¶€ì—¬
 
-            jelly_list.Add(jelly);                                                             // À§¿¡¼­ ¸¸µé¾ú´ø Á©¸®µéÀ» ¸ğµÎ »ı¼ºÇÔ
+            jelly_list.Add(jelly);                                                             // ìœ„ì—ì„œ ë§Œë“¤ì—ˆë˜ ì ¤ë¦¬ë“¤ì„ ëª¨ë‘ ìƒì„±í•¨
         }
     }
 
-    public void Exit()                                // °ÔÀÓ¿¡¼­ ³ª°¥ ¶§
+    public void Exit()                                // ê²Œì„ì—ì„œ ë‚˜ê°ˆ ë•Œ
     {
-        data_manager.JsonSave();                      // ÀúÀåÇÔ
+        data_manager.JsonSave();                      // ì €ì¥í•¨
 
-        SoundManager.instance.PlaySound("Pause Out"); // ³ª°¡´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Pause Out"); // ë‚˜ê°€ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
 
-        Application.Quit();                           // °ÔÀÓ¿¡¼­ ³ª°¡Áü (À¯´ÏÆ¼ ÇÁ·Î±×·¥¿¡¼­´Â Application.Quit() ÇÔ¼ö°¡ ÀÛµ¿ ÇÏÁö ¾Ê´Â °ÍÀÌ Á¤»óÀÓ)
+        Application.Quit();                           // ê²Œì„ì—ì„œ ë‚˜ê°€ì§ (ìœ ë‹ˆí‹° í”„ë¡œê·¸ë¨ì—ì„œëŠ” Application.Quit() í•¨ìˆ˜ê°€ ì‘ë™ í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì •ìƒì„)
     }
 }
