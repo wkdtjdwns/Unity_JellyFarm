@@ -8,36 +8,36 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] audio_clips;
     public AudioClip[] bgm_clips;
 
-    // SoundManager¿¡ ÀÖ´Â 2°³ÀÇ player ¿ÀºêÁ§Æ® °´Ã¼
+    // SoundManagerì— ìˆëŠ” 2ê°œì˜ player ì˜¤ë¸Œì íŠ¸ ê°ì²´
     AudioSource bgm_player;
     AudioSource sfx_player;
 
-    // ¿É¼Ç¿¡¼­ ¼³Á¤ÇÒ »ç¿îµå º¯¼öµé
-    public Slider bgm_slider; // ¹è°æÀ½ º¯¼ö
-    public Slider sfx_slider; // È¿°úÀ½ º¯¼ö
+    // ì˜µì…˜ì—ì„œ ì„¤ì •í•  ì‚¬ìš´ë“œ ë³€ìˆ˜ë“¤
+    public Slider bgm_slider; // ë°°ê²½ìŒ ë³€ìˆ˜
+    public Slider sfx_slider; // íš¨ê³¼ìŒ ë³€ìˆ˜
 
-    public static SoundManager instance; // instance º¯¼ö¸¦ È°¿ëÇØ¼­ ¾îµğ¼­µç PlaySound() ÇÔ¼ö¿¡ ½±°Ô Á¢±Ù ÇÒ ¼ö ÀÖ°Ô ÇÔ
+    public static SoundManager instance; // instance ë³€ìˆ˜ë¥¼ í™œìš©í•´ì„œ ì–´ë””ì„œë“  PlaySound() í•¨ìˆ˜ì— ì‰½ê²Œ ì ‘ê·¼ í•  ìˆ˜ ìˆê²Œ í•¨
 
     void Awake()
     {
-        instance = this; // instance º¯¼ö¸¦ this·Î ÁöÁ¤ÇÔ
+        instance = this; // instance ë³€ìˆ˜ë¥¼ thisë¡œ ì§€ì •í•¨
 
-        bgm_player = GameObject.Find("BGM Player").GetComponent<AudioSource>(); // BMG PlayerÀÇ Audio Souce ÄÄÆÛ³ÍÆ®¸¦ °¡Á®¿È
-        sfx_player = GameObject.Find("Sfx Player").GetComponent<AudioSource>(); // Sfx PlayerÀÇ Audio Souce ÄÄÆÛ³ÍÆ®¸¦ °¡Á®¿È
+        bgm_player = GameObject.Find("BGM Player").GetComponent<AudioSource>(); // BGM Playerì˜ Audio Souce ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
+        sfx_player = GameObject.Find("Sfx Player").GetComponent<AudioSource>(); // Sfx Playerì˜ Audio Souce ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
 
-        bgm_slider = bgm_slider.GetComponent<Slider>();                         // bgm_sliderÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Á®¿È
-        sfx_slider = sfx_slider.GetComponent<Slider>();                         // sfx_sliderÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Á®¿È
+        bgm_slider = bgm_slider.GetComponent<Slider>();                         // bgm_sliderì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
+        sfx_slider = sfx_slider.GetComponent<Slider>();                         // sfx_sliderì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
 
-        // onValueChanged¸¦ ÅëÇØ ½½¶óÀÌ´õÀÇ °ªÀÌ º¯°æµÇ¾úÀ» ¶§ ¹ß»ıµÉ ÀÌº¥Æ®¸¦ ÁöÁ¤ ÇÒ ¼ö ÀÖ°Ô ÇÔ
+        // onValueChangedë¥¼ í†µí•´ ìŠ¬ë¼ì´ë”ì˜ ê°’ì´ ë³€ê²½ë˜ì—ˆì„ ë•Œ ë°œìƒë  ì´ë²¤íŠ¸ë¥¼ ì§€ì • í•  ìˆ˜ ìˆê²Œ í•¨
         bgm_slider.onValueChanged.AddListener(ChangeBgmSound);
         sfx_slider.onValueChanged.AddListener(ChangeSfxSound);
     }
 
-    public void PlaySound(string type) // ¼Ò¸®¸¦ ³»´Â ÇÔ¼ö  /  ¸Å°³º¯¼ö·Î »óÈ²À» ÁöÁ¤ÇØ¼­ »óÈ²¿¡ ¸Â´Â »ç¿îµå¸¦ Ãâ·ÂÇÒ ¼ö ÀÖ°ÔÇÔ
+    public void PlaySound(string type) // ì†Œë¦¬ë¥¼ ë‚´ëŠ” í•¨ìˆ˜  /  ë§¤ê°œë³€ìˆ˜ë¡œ ìƒí™©ì„ ì§€ì •í•´ì„œ ìƒí™©ì— ë§ëŠ” ì‚¬ìš´ë“œë¥¼ ì¶œë ¥í•  ìˆ˜ ìˆê²Œí•¨
     {
         int index = 0;
 
-        // °¢ »óÈ²¿¡ ¸Â´Â »ç¿îµå Ãâ·Â
+        // ê° ìƒí™©ì— ë§ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
         switch (type)
         {
             case "Get Jelatin": index = 0; break;
@@ -54,18 +54,18 @@ public class SoundManager : MonoBehaviour
 
         sfx_player.clip = audio_clips[index];
         sfx_player.Play();
-        // °¢ »óÈ²¿¡ ¸Â´Â »ç¿îµå Ãâ·Â
+        // ê° ìƒí™©ì— ë§ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    // ÁöÁ¤µÈ ÇÔ¼öµéÀº floatÇü ¸Å°³º¯¼ö(º¯°æµÈ °ª)¸¦ ÇÏ³ª ¹Ş¾Æ¿Í¾ß ÇÔ
+    // ì§€ì •ëœ í•¨ìˆ˜ë“¤ì€ floatí˜• ë§¤ê°œë³€ìˆ˜(ë³€ê²½ëœ ê°’)ë¥¼ í•˜ë‚˜ ë°›ì•„ì™€ì•¼ í•¨
     void ChangeBgmSound(float value)
     {
-        bgm_player.volume = value; // bgm_player.volumeÀ» ¹Ş¾Æ¿Â floatÇü ¸Å°³º¯¼ö·Î ÀúÀåÇÔ
+        bgm_player.volume = value; // bgm_player.volumeì„ ë°›ì•„ì˜¨ floatí˜• ë§¤ê°œë³€ìˆ˜ë¡œ ì €ì¥í•¨
     }
 
     void ChangeSfxSound(float value)
     {
-        sfx_player.volume = value; // sfx_player.volumeÀ» ¹Ş¾Æ¿Â floatÇü ¸Å°³º¯¼ö·Î ÀúÀåÇÔ
+        sfx_player.volume = value; // sfx_player.volumeì„ ë°›ì•„ì˜¨ floatí˜• ë§¤ê°œë³€ìˆ˜ë¡œ ì €ì¥í•¨
     }
-    // ÁöÁ¤µÈ ÇÔ¼öµéÀº floatÇü ¸Å°³º¯¼ö(º¯°æµÈ °ª)¸¦ ÇÏ³ª ¹Ş¾Æ¿Í¾ß ÇÔ
+    // ì§€ì •ëœ í•¨ìˆ˜ë“¤ì€ floatí˜• ë§¤ê°œë³€ìˆ˜(ë³€ê²½ëœ ê°’)ë¥¼ í•˜ë‚˜ ë°›ì•„ì™€ì•¼ í•¨
 }
