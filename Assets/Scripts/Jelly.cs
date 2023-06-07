@@ -5,62 +5,62 @@ using UnityEngine.UI;
 
 public class Jelly : MonoBehaviour
 {
-    // Á©¸®¿¡ ´ëÇÑ º¯¼öµé
-    public int id;                         // Á©¸®ÀÇ id
-    public int level;                      // Á©¸®ÀÇ ·¹º§
-    public float exp;                      // ÇöÀç °æÇèÄ¡
-    public float required_exp;             // ·¹º§¾÷¿¡ ÇÊ¿äÇÑ °æÇèÄ¡
-    public float max_exp;                  // ÃÖ´ë °æÇèÄ¡
+    // ì ¤ë¦¬ì— ëŒ€í•œ ë³€ìˆ˜ë“¤
+    public int id;                         // ì ¤ë¦¬ì˜ id
+    public int level;                      // ì ¤ë¦¬ì˜ ë ˆë²¨
+    public float exp;                      // í˜„ì¬ ê²½í—˜ì¹˜
+    public float required_exp;             // ë ˆë²¨ì—…ì— í•„ìš”í•œ ê²½í—˜ì¹˜
+    public float max_exp;                  // ìµœëŒ€ ê²½í—˜ì¹˜
 
-    // GameManager¿¡ ´ëÇÑ º¯¼öµé
-    public GameObject game_manager_obj;    // GameManager¿Í »óÈ£ ÀÛ¿ëÇÏ±â À§ÇÑ º¯¼ö
-    public GameManager game_manager;       // GameManager¿¡¼­ °ü¸®ÇÏ´Â ¿©·¯ °ªµéÀ» È°¿ëÇÏ±â À§ÇØ °´Ã¼¸¦ ºÒ·¯¿È
+    // GameManagerì— ëŒ€í•œ ë³€ìˆ˜ë“¤
+    public GameObject game_manager_obj;    // GameManagerì™€ ìƒí˜¸ ì‘ìš©í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    public GameManager game_manager;       // GameManagerì—ì„œ ê´€ë¦¬í•˜ëŠ” ì—¬ëŸ¬ ê°’ë“¤ì„ í™œìš©í•˜ê¸° ìœ„í•´ ê°ì²´ë¥¼ ë¶ˆëŸ¬ì˜´
 
-    // ¸ÊÀÇ ¹üÀ§¸¦ Ã¥ÀÓÁö´Â º¯¼öµé
-    public GameObject left_top;            // ¿ŞÂÊ À§ ¿ÀºêÁ§Æ®
-    public GameObject right_bottom;        // ¿À¸¥ÂÊ ¾Æ·¡ ¿ÀºêÁ§Æ®
+    // ë§µì˜ ë²”ìœ„ë¥¼ ì±…ì„ì§€ëŠ” ë³€ìˆ˜ë“¤
+    public GameObject left_top;            // ì™¼ìª½ ìœ„ ì˜¤ë¸Œì íŠ¸
+    public GameObject right_bottom;        // ì˜¤ë¥¸ìª½ ì•„ë˜ ì˜¤ë¸Œì íŠ¸
 
-    // °ÔÀÓ¿¡ ´ëÇÑ º¯¼öµé
-    public SpriteRenderer sprite_renderer; // ½ºÇÁ¶óÀÌÆ®¸¦ ·»´õ¸µ ÇÏ´Â º¯¼ö
-    public Animator anim;                  // ¾Ö´Ï¸ÅÀÌ¼ÇÀ» ºÒ·¯¿À´Â º¯¼ö
+    // ê²Œì„ì— ëŒ€í•œ ë³€ìˆ˜ë“¤
+    public SpriteRenderer sprite_renderer; // ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë Œë”ë§ í•˜ëŠ” ë³€ìˆ˜
+    public Animator anim;                  // ì• ë‹ˆë§¤ì´ì…˜ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ë³€ìˆ˜
 
-    float pick_time;                       // Á©¸®¸¦ Àâ°í ÀÖ´Â ½Ã°£
+    float pick_time;                       // ì ¤ë¦¬ë¥¼ ì¡ê³  ìˆëŠ” ì‹œê°„
 
-    int move_delay;                        // ÀÌµ¿°ú ÀÌµ¿ »çÀÌÀÇ µô·¹ÀÌ
-    int move_time;                         // ÀÌµ¿ÇÏ´Â ½Ã°£
+    int move_delay;                        // ì´ë™ê³¼ ì´ë™ ì‚¬ì´ì˜ ë”œë ˆì´
+    int move_time;                         // ì´ë™í•˜ëŠ” ì‹œê°„
 
-    float speed_x;                         // xÃà ¹æÇâ ÀÌµ¿ ¼Óµµ
-    float speed_y;                         // yÃà ¹æÇâ ÀÌµ¿ ¼Óµµ
+    float speed_x;                         // xì¶• ë°©í–¥ ì´ë™ ì†ë„
+    float speed_y;                         // yì¶• ë°©í–¥ ì´ë™ ì†ë„
 
-    bool isWandering;                      // ¸ØÃçÀÖ´ÂÁö ¿©ºÎ
-    bool isWalking;                        // ¿òÁ÷ÀÌ´ÂÁö ¿©ºÎ
+    bool isWandering;                      // ë©ˆì¶°ìˆëŠ”ì§€ ì—¬ë¶€
+    bool isWalking;                        // ì›€ì§ì´ëŠ”ì§€ ì—¬ë¶€
 
-    GameObject shadow;                     // Á©¸®ÀÇ ±×¸²ÀÚ
-    float shadow_pos_y;                    // ±×¸²ÀÚÀÇ yÁÂÇ¥ (À§Ä¡)
+    GameObject shadow;                     // ì ¤ë¦¬ì˜ ê·¸ë¦¼ì
+    float shadow_pos_y;                    // ê·¸ë¦¼ìì˜ yì¢Œí‘œ (ìœ„ì¹˜)
 
-    int jelatin_delay;                     // ÀÚµ¿À¸·Î ¾ò´Â Á©¶óÆ¾ÀÇ µô·¹ÀÌ
-    bool isGetting;                        // Á©¶óÆ¾À» ¾ò¾ú´ÂÁö ¿©ºÎ
+    int jelatin_delay;                     // ìë™ìœ¼ë¡œ ì–»ëŠ” ì ¤ë¼í‹´ì˜ ë”œë ˆì´
+    bool isGetting;                        // ì ¤ë¼í‹´ì„ ì–»ì—ˆëŠ”ì§€ ì—¬ë¶€
 
     void Awake()
     {
-        left_top = GameObject.Find("LeftTop").gameObject;              // ¿ŞÂÊ À§ ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ³½ µÚ º¯¼ö¿¡ ÀúÀåÇÔ
-        right_bottom = GameObject.Find("RightBottom").gameObject;      // ¿À¸¥ÂÊ ¾Æ·¡ ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ³½ µÚ º¯¼ö¿¡ ÀúÀåÇÔ
-        game_manager_obj = GameObject.Find("GameManager").gameObject;  // GameManager ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¼­ game_manager_obj¿¡ ÀúÀåÇÔ
-        game_manager = game_manager_obj.GetComponent<GameManager>();   // game_manager º¯¼ö°¡ GameManagerÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Áö°Ô ÇÔ
+        left_top = GameObject.Find("LeftTop").gameObject;              // ì™¼ìª½ ìœ„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ë‚¸ ë’¤ ë³€ìˆ˜ì— ì €ì¥í•¨
+        right_bottom = GameObject.Find("RightBottom").gameObject;      // ì˜¤ë¥¸ìª½ ì•„ë˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ë‚¸ ë’¤ ë³€ìˆ˜ì— ì €ì¥í•¨
+        game_manager_obj = GameObject.Find("GameManager").gameObject;  // GameManager ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ì„œ game_manager_objì— ì €ì¥í•¨
+        game_manager = game_manager_obj.GetComponent<GameManager>();   // game_manager ë³€ìˆ˜ê°€ GameManagerì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì§€ê²Œ í•¨
 
-        sprite_renderer = GetComponent<SpriteRenderer>();              // sprite º¯¼ö°¡ SpriteRendererÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Áö°Ô ÇÔ
-        anim = GetComponent<Animator>();                               // anim º¯¼ö°¡ AnimatorÀÇ ÄÄÆÛ³ÍÆ®¸¦ °¡Áö°Ô ÇÔ
+        sprite_renderer = GetComponent<SpriteRenderer>();              // sprite ë³€ìˆ˜ê°€ SpriteRendererì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì§€ê²Œ í•¨
+        anim = GetComponent<Animator>();                               // anim ë³€ìˆ˜ê°€ Animatorì˜ ì»´í¼ë„ŒíŠ¸ë¥¼ ê°€ì§€ê²Œ í•¨
 
-        // º¯¼öµé ÃÊ±âÈ­
+        // ë³€ìˆ˜ë“¤ ì´ˆê¸°í™”
         isWandering = false;
         isWalking = false;
         isGetting = false;
-        // º¯¼öµé ÃÊ±âÈ­
+        // ë³€ìˆ˜ë“¤ ì´ˆê¸°í™”
 
-        shadow = transform.Find("Shadow").gameObject; // °ÔÀÓ ¿ÀºêÁ§Æ® Áß "Shadow"¶ó´Â ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¼­ º¯¼ö shadow¿¡ ÀúÀåÇÔ (Á©¸® ¿ÀºêÁ§Æ®ÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®·Î Á¸ÀçÇÔ)
-        switch (id)                                   // Á©¸®ÀÇ Á¾·ù¿¡ µû¶ó¼­ ±×¸²ÀÚÀÇ À§Ä¡°¡ ´Ş¶óÁü
+        shadow = transform.Find("Shadow").gameObject; // ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì¤‘ "Shadow"ë¼ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ì„œ ë³€ìˆ˜ shadowì— ì €ì¥í•¨ (ì ¤ë¦¬ ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ ì˜¤ë¸Œì íŠ¸ë¡œ ì¡´ì¬í•¨)
+        switch (id)                                   // ì ¤ë¦¬ì˜ ì¢…ë¥˜ì— ë”°ë¼ì„œ ê·¸ë¦¼ìì˜ ìœ„ì¹˜ê°€ ë‹¬ë¼ì§
         {   
-            // ±×¸²ÀÚÀÇ À§Ä¡¸¦ ¹Ù²Ş            
+            // ê·¸ë¦¼ìì˜ ìœ„ì¹˜ë¥¼ ë°”ê¿ˆ            
             case 0: shadow_pos_y = -0.05f; break;     
             case 6: shadow_pos_y = -0.12f; break;
             case 3: shadow_pos_y = -0.14f; break;
@@ -68,143 +68,146 @@ public class Jelly : MonoBehaviour
             case 11: shadow_pos_y = -0.16f; break;
             default: shadow_pos_y = -0.05f; break;
         }
-        // ±×¸²ÀÚ´Â Á©¸® ¿ÀºêÁ§Æ® ¾È¿¡ (ÀÚ½Ä ¿ÀºêÁ§Æ®)ÀÖ±â ¶§¹®¿¡ localPositionÀ¸·Î À§Ä¡¸¦ Á¶Á¤ÇÔ
-        shadow.transform.localPosition = new Vector3(0, shadow_pos_y, 0); // Á©¸®ÀÇ ±×¸²ÀÚ À§Ä¡¸¦ »õ·Î Á¤ÇÑ yÁÂÇ¥·Î ÀÌµ¿½ÃÅ´ (yÁÂÇ¥¸¸ ÀÌµ¿½ÃÄÑ¾ß ÇØ¼­ ´Ù¸¥ °ªµéÀº 0ÀÓ)
+        // ê·¸ë¦¼ìëŠ” ì ¤ë¦¬ ì˜¤ë¸Œì íŠ¸ ì•ˆì— (ìì‹ ì˜¤ë¸Œì íŠ¸)ìˆê¸° ë•Œë¬¸ì— localPositionìœ¼ë¡œ ìœ„ì¹˜ë¥¼ ì¡°ì •í•¨
+        shadow.transform.localPosition = new Vector3(0, shadow_pos_y, 0); // ì ¤ë¦¬ì˜ ê·¸ë¦¼ì ìœ„ì¹˜ë¥¼ ìƒˆë¡œ ì •í•œ yì¢Œí‘œë¡œ ì´ë™ì‹œí‚´ (yì¢Œí‘œë§Œ ì´ë™ì‹œì¼œì•¼ í•´ì„œ ë‹¤ë¥¸ ê°’ë“¤ì€ 0ì„)
     }
 
-    void Update() // ¸Å ÇÁ¶óÀÓ¸¶´Ù
+    void Update() // ë§¤ í”„ë¼ì„ë§ˆë‹¤
     {
-        if(exp < max_exp)          // ÇöÀç °æÇèÄ¡°¡ ÃÖ´ë °æÇèÄ¡¸¦ ³ÑÁö ¾Ê¾ÒÀ¸¸é
-            exp += Time.deltaTime; // exp º¯¼ö¿¡ ÃÊ´ç 1¾¿ ´õÇØÁö¸é¼­ ½Ã°£ÀÌ Áö³²¿¡ µû¶ó ÀÚ¿¬½º·´°Ô ·¹º§ÀÌ »ó½ÂÇÔ
+        if(exp < max_exp)          // í˜„ì¬ ê²½í—˜ì¹˜ê°€ ìµœëŒ€ ê²½í—˜ì¹˜ë¥¼ ë„˜ì§€ ì•Šì•˜ìœ¼ë©´
+            exp += Time.deltaTime; // exp ë³€ìˆ˜ì— ì´ˆë‹¹ 1ì”© ë”í•´ì§€ë©´ì„œ ì‹œê°„ì´ ì§€ë‚¨ì— ë”°ë¼ ìì—°ìŠ¤ëŸ½ê²Œ ë ˆë²¨ì´ ìƒìŠ¹í•¨
 
-        if (exp > required_exp * level && level < 3) // ·¹º§¿¡ ºñ·ÊÇÏ¿© ·¹º§ ¾÷¿¡ ¿ä±¸µÇ´Â expÀÇ Å©±â¸¦ Áõ°¡½ÃÅ´
-            game_manager.ChangeAc(anim, ++level);    // Á©¸®ÀÇ Å©±â ¾Ö´Ï¸ÅÀÌ¼ÇÀ» ¹Ù²Ù°í (Å©±â Ä¿Áü) ·¹º§À» Áõ°¡½ÃÅ´
+        if (exp > required_exp * level && level < 3) // ë ˆë²¨ì— ë¹„ë¡€í•˜ì—¬ ë ˆë²¨ ì—…ì— ìš”êµ¬ë˜ëŠ” expì˜ í¬ê¸°ë¥¼ ì¦ê°€ì‹œí‚´
+            game_manager.ChangeAc(anim, ++level);    // ì ¤ë¦¬ì˜ í¬ê¸° ì• ë‹ˆë§¤ì´ì…˜ì„ ë°”ê¾¸ê³  (í¬ê¸° ì»¤ì§) ë ˆë²¨ì„ ì¦ê°€ì‹œí‚´
 
-        if (!isGetting)                              // Á©¶óÆ¾À» Áö±İ ¾òÁö ¾Ê¾Ò´Ù¸é
-            StartCoroutine(GetJelatin());            // ÄÚ·çÆ¾ ÇÔ¼ö¸¦ ½ÇÇàÇÔ
+        if (!isGetting)                              // ì ¤ë¼í‹´ì„ ì§€ê¸ˆ ì–»ì§€ ì•Šì•˜ë‹¤ë©´
+            StartCoroutine(GetJelatin());            // ì½”ë£¨í‹´ í•¨ìˆ˜ë¥¼ ì‹¤í–‰í•¨
             
     }
 
-    void FixedUpdate() // ÀÏÁ¤ÇÑ °£°İ¸¶´Ù
+    void FixedUpdate() // ì¼ì •í•œ ê°„ê²©ë§ˆë‹¤
     {
-        if (!isWandering)             // ¸ØÃç ÀÖÀ¸¸é
-            StartCoroutine(Wander()); // ÄÚ·çÆ¾ ÇÔ¼ö ½ÇÇà
+        if (!isWandering)             // ë©ˆì¶° ìˆìœ¼ë©´
+            StartCoroutine(Wander()); // ì½”ë£¨í‹´ í•¨ìˆ˜ ì‹¤í–‰
 
-        if (isWalking)                // ¿òÁ÷ÀÓÀÇ ¿©ºÎ°¡ °áÁ¤µÇ¸é
-            Move();                   // ¿òÁ÷ÀÓ
+        if (isWalking)                // ì›€ì§ì„ì˜ ì—¬ë¶€ê°€ ê²°ì •ë˜ë©´
+            Move();                   // ì›€ì§ì„
 
         float pos_x = transform.position.x;
         float pos_y = transform.position.y;
 
-        // ¸ÊÀÇ ¹üÀ§ ¹ÛÀ¸·Î ³ª°¡Áö ¸øÇÏ°Ô ÇÔ
-        if (pos_x < left_top.transform.position.x || pos_x > right_bottom.transform.position.x) // Á©¸®ÀÇ xÁÂÇ¥°¡ LeftTopÀÇ xÁÂÇ¥º¸´Ù ³·°Å³ª (¿ŞÂÊ¿¡ ÀÖ°Å³ª) RightBottomÀÇ xÁÂÇ¥º¸´Ù ³ôÀ¸¸é (¿À¸¥ÂÊ¿¡ ÀÖÀ¸¸é)
-            speed_x = -speed_x;                                                                 // xÁÂÇ¥¸¦ ¹İ´ë·Î ÇÔ
+        // ë§µì˜ ë²”ìœ„ ë°–ìœ¼ë¡œ ë‚˜ê°€ì§€ ëª»í•˜ê²Œ í•¨
+        if (pos_x < left_top.transform.position.x || pos_x > right_bottom.transform.position.x) // ì ¤ë¦¬ì˜ xì¢Œí‘œê°€ LeftTopì˜ xì¢Œí‘œë³´ë‹¤ ë‚®ê±°ë‚˜ (ì™¼ìª½ì— ìˆê±°ë‚˜) RightBottomì˜ xì¢Œí‘œë³´ë‹¤ ë†’ìœ¼ë©´ (ì˜¤ë¥¸ìª½ì— ìˆìœ¼ë©´)
+            speed_x = -speed_x;                                                                 // xì¢Œí‘œë¥¼ ë°˜ëŒ€ë¡œ í•¨
 
-        if (pos_y > left_top.transform.position.y || pos_y < right_bottom.transform.position.y) // Á©¸®ÀÇ yÁÂÇ¥°¡ LeftTopÀÇ yÁÂÇ¥º¸´Ù ³ô°Å³ª (À§¿¡ ÀÖ°Å³ª) RightBottomÀÇ yÁÂÇ¥º¸´Ù ³·À¸¸é (¾Æ·¡¿¡ ÀÖÀ¸¸é)
-            speed_y = -speed_y;                                                                 // yÁÂÇ¥¸¦ ¹İ´ë·Î ÇÔ
+        if (pos_y > left_top.transform.position.y || pos_y < right_bottom.transform.position.y) // ì ¤ë¦¬ì˜ yì¢Œí‘œê°€ LeftTopì˜ yì¢Œí‘œë³´ë‹¤ ë†’ê±°ë‚˜ (ìœ„ì— ìˆê±°ë‚˜) RightBottomì˜ yì¢Œí‘œë³´ë‹¤ ë‚®ìœ¼ë©´ (ì•„ë˜ì— ìˆìœ¼ë©´)
+            speed_y = -speed_y;                                                                 // yì¢Œí‘œë¥¼ ë°˜ëŒ€ë¡œ í•¨
     }
 
-    void OnMouseDown() // Á©¸®¸¦ Å¬¸¯ÇÏ°í ¶¼´Â ¼ø°£
+    void OnMouseDown() // ì ¤ë¦¬ë¥¼ í´ë¦­í•˜ê³  ë–¼ëŠ” ìˆœê°„
     {
-        if (!game_manager.isLive) return;         // °ÔÀÓÀÌ ¸ØÃç ÀÖÁö ¾ÊÀ¸¸é ½ÇÇà (¸ØÃç ÀÖÀ¸¸é ½ÇÇà X)
+        if (!game_manager.isLive) return;         // ê²Œì„ì´ ë©ˆì¶° ìˆì§€ ì•Šìœ¼ë©´ ì‹¤í–‰ (ë©ˆì¶° ìˆìœ¼ë©´ ì‹¤í–‰ X)
 
-        isWalking = false;                        // ¿òÁ÷ÀÓÀ» ¸ØÃß°í
-        anim.SetBool("isWalk", false);            // ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Çµµ ¸ØÃá µÚ
-        anim.SetTrigger("doTouch");               // Å¬¸¯ ¾Ö´Ï¸ÅÀÌ¼ÇÀ» ½ÇÇàÇÑ ´ÙÀ½
+        isWalking = false;                        // ì›€ì§ì„ì„ ë©ˆì¶”ê³ 
+        anim.SetBool("isWalk", false);            // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ë„ ë©ˆì¶˜ ë’¤
+        anim.SetTrigger("doTouch");               // í´ë¦­ ì• ë‹ˆë§¤ì´ì…˜ì„ ì‹¤í–‰í•œ ë‹¤ìŒ
 
-        if(exp < max_exp) ++exp;                  // ÇöÀç °æÇèÄ¡°¡ ÃÖ´ë °æÇèÄ¡¸¦ ³ÑÁö ¾Ê¾ÒÀ¸¸é °æÇèÄ¡°¡ 1¾¿ Áõ°¡ÇÏ¸ç
+        if(exp < max_exp) ++exp;                  // í˜„ì¬ ê²½í—˜ì¹˜ê°€ ìµœëŒ€ ê²½í—˜ì¹˜ë¥¼ ë„˜ì§€ ì•Šì•˜ìœ¼ë©´ ê²½í—˜ì¹˜ê°€ 1ì”© ì¦ê°€í•˜ë©°
 
-        game_manager.GetJelatin(id, level);       // GameManager¿¡¼­ °ü¸®ÇÏ´Â Á©¸®Æ¾À» ¾ò´Â ÇÔ¼ö¸¦ È£Ãâ (ºÒ·¯¿È)ÇØ¼­ id¿Í level¿¡ ºñ·ÊÇØ Á©¶óÆ¾À» È¹µæÇÔ
+        game_manager.GetJelatin(id, level);       // GameManagerì—ì„œ ê´€ë¦¬í•˜ëŠ” ì ¤ë¦¬í‹´ì„ ì–»ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œ (ë¶ˆëŸ¬ì˜´)í•´ì„œ idì™€ levelì— ë¹„ë¡€í•´ ì ¤ë¼í‹´ì„ íšë“í•¨
 
-        SoundManager.instance.PlaySound("Get Jelatin"); // ÅÍÄ¡ ÇÏ´Â »ç¿îµå Ãâ·Â
+        SoundManager.instance.PlaySound("Get Jelatin"); // í„°ì¹˜ í•˜ëŠ” ì‚¬ìš´ë“œ ì¶œë ¥
     }
 
-    void OnMouseDrag() // Á©¸®¸¦ µå·¡±× ÇÒ ½Ã
+    void OnMouseDrag() // ì ¤ë¦¬ë¥¼ ë“œë˜ê·¸ í•  ì‹œ
     {
-        if (!game_manager.isLive) return; // °ÔÀÓÀÌ ¸ØÃç ÀÖÁö ¾ÊÀ¸¸é ½ÇÇà (¸ØÃç ÀÖÀ¸¸é ½ÇÇà X)
+        if (!game_manager.isLive) return; // ê²Œì„ì´ ë©ˆì¶° ìˆì§€ ì•Šìœ¼ë©´ ì‹¤í–‰ (ë©ˆì¶° ìˆìœ¼ë©´ ì‹¤í–‰ X)
 
-        pick_time += Time.deltaTime;      // Àâ°í ÀÖ´Â ½Ã°£À» ÃÊ´ç 1¾¿ Áõ°¡
+        pick_time += Time.deltaTime;      // ì¡ê³  ìˆëŠ” ì‹œê°„ì„ ì´ˆë‹¹ 1ì”© ì¦ê°€
 
-        if (pick_time < 0.2f) return;     // ¸¸¾à Àâ°í ÀÖ´Â ½Ã°£ÀÌ 0.2ÃÊ º¸´Ù ÀÛÀ¸¸é ´Ü¼ø Å¬¸¯À¸·Î ÆÇ´ÜÇÔ
+        if (pick_time < 0.2f) return;     // ë§Œì•½ ì¡ê³  ìˆëŠ” ì‹œê°„ì´ 0.2ì´ˆ ë³´ë‹¤ ì‘ìœ¼ë©´ ë‹¨ìˆœ í´ë¦­ìœ¼ë¡œ íŒë‹¨í•¨
 
-                                          // ¸¸¾à ´Ü¼ø Å¬¸¯ÀÌ ¾Æ´Ñ µå·¡±×·Î ÆÇ´Ü ÇÒ ½Ã
-        isWalking = false;                // ÀÌµ¿À» ¸ØÃß°í
-        anim.SetBool("isWalk", false);    // ÀÌµ¿ ¾Ö´Ï¸ÅÀÌ¼Çµµ ¸ØÃá µÚ
-        anim.SetTrigger("doTouch");       // ¸¸Á³À» ¶§ ¾Ö´Ï¸ÅÀÌ¼Ç ½ÇÇà
+                                          // ë§Œì•½ ë‹¨ìˆœ í´ë¦­ì´ ì•„ë‹Œ ë“œë˜ê·¸ë¡œ íŒë‹¨ í•  ì‹œ
+        isWalking = false;                // ì´ë™ì„ ë©ˆì¶”ê³ 
+        anim.SetBool("isWalk", false);    // ì´ë™ ì• ë‹ˆë§¤ì´ì…˜ë„ ë©ˆì¶˜ ë’¤
+        anim.SetTrigger("doTouch");       // ë§Œì¡Œì„ ë•Œ ì• ë‹ˆë§¤ì´ì…˜ ì‹¤í–‰
 
-        Vector3 mouse_pos = Input.mousePosition;                                                            // ¸¶¿ì½ºÀÇ À§Ä¡ º¯¼ö (mouse_pos)
+        Vector3 mouse_pos = Input.mousePosition;                                                            // ë§ˆìš°ìŠ¤ì˜ ìœ„ì¹˜ ë³€ìˆ˜ (mouse_pos)
 
-        // ScreenToWorldPoint¸¦ ÅëÇØ ¸¶¿ì½ºÀÇ À§Ä¡¸¦ ¿ùµå ÁÂÇ¥°è·Î º¯°æ
-        // ÀÎÅÍÆäÀÌ½º°¡ ÀÖ´Â °÷Àº ½ºÅ©¸° ÁÂÇ¥°è / ½ÇÁ¦ µµÆ® ÀÌ¹ÌÁö°¡ ÀÖ´Â °÷Àº ¿ùµå ÀÚÇ¥°è
-        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(mouse_pos.x, mouse_pos.y, mouse_pos.y)); // x, y, z ÁÂÇ¥¸¦ ¸¶¿ì½ºÀÇ À§Ä¡¿¡ µû¶ó¼­ °áÁ¤ÇÏ°í ±× °ªÀ» ÀúÁ¤ÇÒ º¯¼ö (point)
+        // ScreenToWorldPointë¥¼ í†µí•´ ë§ˆìš°ìŠ¤ì˜ ìœ„ì¹˜ë¥¼ ì›”ë“œ ì¢Œí‘œê³„ë¡œ ë³€ê²½
+        // ì¸í„°í˜ì´ìŠ¤ê°€ ìˆëŠ” ê³³ì€ ìŠ¤í¬ë¦° ì¢Œí‘œê³„ / ì‹¤ì œ ë„íŠ¸ ì´ë¯¸ì§€ê°€ ìˆëŠ” ê³³ì€ ì›”ë“œ ìí‘œê³„
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(mouse_pos.x, mouse_pos.y, mouse_pos.y)); // x, y, z ì¢Œí‘œë¥¼ ë§ˆìš°ìŠ¤ì˜ ìœ„ì¹˜ì— ë”°ë¼ì„œ ê²°ì •í•˜ê³  ê·¸ ê°’ì„ ì €ì •í•  ë³€ìˆ˜ (point)
 
-        transform.position = point;                                                                         // ¸¶¿ì½º·Î Á©¸®¸¦ µå·¡±×ÇÏ°í ÀÖÀ¸¸é Á©¸®°¡ ¸¶¿ì½º¸¦ µû¶ó°¨
+        transform.position = point;                                                                         // ë§ˆìš°ìŠ¤ë¡œ ì ¤ë¦¬ë¥¼ ë“œë˜ê·¸í•˜ê³  ìˆìœ¼ë©´ ì ¤ë¦¬ê°€ ë§ˆìš°ìŠ¤ë¥¼ ë”°ë¼ê°
     }
 
-    void OnMouseUp() // Á©¸®¸¦ Å¬¸¯ÇßÀ» ¶§
+    void OnMouseUp() // ì ¤ë¦¬ë¥¼ í´ë¦­í–ˆì„ ë•Œ
     {
-        if (!game_manager.isLive) return;          // °ÔÀÓÀÌ ¸ØÃç ÀÖÁö ¾ÊÀ¸¸é ½ÇÇà (¸ØÃç ÀÖÀ¸¸é ½ÇÇà X)
+        if (!game_manager.isLive) return;          // ê²Œì„ì´ ë©ˆì¶° ìˆì§€ ì•Šìœ¼ë©´ ì‹¤í–‰ (ë©ˆì¶° ìˆìœ¼ë©´ ì‹¤í–‰ X)
 
-        pick_time = 0;                             // Àâ°í ÀÖ´Â ½Ã°£ ÃÊ±âÈ­
+        pick_time = 0;                             // ì¡ê³  ìˆëŠ” ì‹œê°„ ì´ˆê¸°í™”
 
-        if (game_manager.isSell)                   // Á©¸®¸¦ µç Ã¤·Î ¸¶¿ì½º Æ÷ÀÎÅÍ¸¦ ÆÇ¸Å ¹öÆ° À§·Î ¿Å±æ ½Ã GameManagerÀÇ isSell º¯¼ö´Â True·Î ¹Ù²î°Ô µÇ°í
+        if (game_manager.isSell)                   // ì ¤ë¦¬ë¥¼ ë“  ì±„ë¡œ ë§ˆìš°ìŠ¤ í¬ì¸í„°ë¥¼ íŒë§¤ ë²„íŠ¼ ìœ„ë¡œ ì˜®ê¸¸ ì‹œ GameManagerì˜ isSell ë³€ìˆ˜ëŠ” Trueë¡œ ë°”ë€Œê²Œ ë˜ê³ 
         {
-            game_manager.GetGold(id, level, this); // ±× »óÅÂ¿¡¼­ Á©¸®¸¦ ³õÀ» °æ¿ì GetGold() ÇÔ¼ö¸¦ ºÒ·¯¿È(È£Ãâ)À¸·Î½á °ñµå¸¦ ¾òÀ½°ú µ¿½Ã¿¡
+            game_manager.GetGold(id, level, this); // ê·¸ ìƒíƒœì—ì„œ ì ¤ë¦¬ë¥¼ ë†“ì„ ê²½ìš° GetGold() í•¨ìˆ˜ë¥¼ ë¶ˆëŸ¬ì˜´(í˜¸ì¶œ)ìœ¼ë¡œì¨ ê³¨ë“œë¥¼ ì–»ìŒê³¼ ë™ì‹œì—
 
-            Destroy(gameObject);                   // Á©¸® ¿ÀºêÁ§Æ®´Â Destroy() ÇÔ¼ö¿¡ ÀÇÇØ »ç¶óÁü
+            Destroy(gameObject);                   // ì ¤ë¦¬ ì˜¤ë¸Œì íŠ¸ëŠ” Destroy() í•¨ìˆ˜ì— ì˜í•´ ì‚¬ë¼ì§
         }
 
         float pos_x = transform.position.x;
         float pos_y = transform.position.y;
 
         
-        if (pos_x < left_top.transform.position.x || pos_x > right_bottom.transform.position.x || // ¸¸¾à µå·¡±× ÈÄ, Á©¸®¸¦ ³õ¾ÒÀ» ¶§ À§Ä¡°¡ ¸ÊÀÇ ¹üÀ§ ¹ÛÀÌ¶ó¸é
-            pos_y > left_top.transform.position.y || pos_y < right_bottom.transform.position.y)   // ¸¸¾à µå·¡±× ÈÄ, Á©¸®¸¦ ³õ¾ÒÀ» ¶§ À§Ä¡°¡ ¸ÊÀÇ ¹üÀ§ ¹ÛÀÌ¶ó¸é
+        if (pos_x < left_top.transform.position.x || pos_x > right_bottom.transform.position.x || // ë§Œì•½ ë“œë˜ê·¸ í›„, ì ¤ë¦¬ë¥¼ ë†“ì•˜ì„ ë•Œ ìœ„ì¹˜ê°€ ë§µì˜ ë²”ìœ„ ë°–ì´ë¼ë©´
+            pos_y > left_top.transform.position.y || pos_y < right_bottom.transform.position.y)   // ë§Œì•½ ë“œë˜ê·¸ í›„, ì ¤ë¦¬ë¥¼ ë†“ì•˜ì„ ë•Œ ìœ„ì¹˜ê°€ ë§µì˜ ë²”ìœ„ ë°–ì´ë¼ë©´
 
-            transform.position = new Vector3(0, -1, 0);                                           // ¸ÊÀÇ Áß¾ÓÀ¸·Î ÀÌµ¿  
+            transform.position = new Vector3(0, -1, 0);                                           // ë§µì˜ ì¤‘ì•™ìœ¼ë¡œ ì´ë™  
     }
 
-    void Move()                                         // JellyÀÇ ¿òÁ÷ÀÓÀ» ±¸ÇöÇÏ±â À§ÇÑ Move() ÇÔ¼ö, ÄÚ·çÆ¾ ÇÔ¼ö (Wander())¸¦ Ãß°¡        // ÄÚ·çÆ¾ ÇÔ¼ö: ½Ã°£ÀÇ °æ°ú¿¡ µû¸¥ ¸í·ÉÀ» ÁÖ°í½ÍÀ» ¶§ »ç¿ëÇÏ°Ô µÇ´Â ÇÔ¼ö
+    void Move()                                         // Jellyì˜ ì›€ì§ì„ì„ êµ¬í˜„í•˜ê¸° ìœ„í•œ Move() í•¨ìˆ˜, ì½”ë£¨í‹´ í•¨ìˆ˜ (Wander())ë¥¼ ì¶”ê°€        // ì½”ë£¨í‹´ í•¨ìˆ˜: ì‹œê°„ì˜ ê²½ê³¼ì— ë”°ë¥¸ ëª…ë ¹ì„ ì£¼ê³ ì‹¶ì„ ë•Œ ì‚¬ìš©í•˜ê²Œ ë˜ëŠ” í•¨ìˆ˜
     {
         if (speed_x != 0)
-            sprite_renderer.flipX = speed_x < 0;        // xÃà ¼Óµµ¿¡ µû¶ó Á©¸®ÀÇ ÀÌ¹ÌÁö¸¦ µÚÁıÀº µÚ
+            sprite_renderer.flipX = speed_x < 0;        // xì¶• ì†ë„ì— ë”°ë¼ ì ¤ë¦¬ì˜ ì´ë¯¸ì§€ë¥¼ ë’¤ì§‘ì€ ë’¤
 
-        transform.Translate(speed_x, speed_y, speed_y); // Á©¸® ÀÌµ¿
+        transform.Translate(speed_x, speed_y, speed_y); // ì ¤ë¦¬ ì´ë™
     }
 
-    IEnumerator Wander() // ÄÚ·çÆ¾ ÇÔ¼ö  /  ÀÌµ¿ÇÏ±â
+    IEnumerator Wander() // ì½”ë£¨í‹´ í•¨ìˆ˜  /  ì´ë™í•˜ê¸°
     {
-        move_delay = Random.Range(3, 6); // ÀÌµ¿°ú ÀÌµ¿ »çÀÌÀÇ µô·¹ÀÌ (3 ~ 5ÃÊ)
-        move_time = Random.Range(3, 6);  // ÀÌµ¿½Ã°£ (3 ~ 5ÃÊ)
+        move_delay = Random.Range(3, 6); // ì´ë™ê³¼ ì´ë™ ì‚¬ì´ì˜ ë”œë ˆì´ (3 ~ 5ì´ˆ)
+        move_time = Random.Range(3, 6);  // ì´ë™ì‹œê°„ (3 ~ 5ì´ˆ)
         
-        // Translate·Î ÀÌµ¿ÇÒ ½Ã Object°¡ ÅÚ·¹Æ÷Æ® ÇÏ´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ Time.deltaTimeÀ» °öÇØÁÜ
+        // Translateë¡œ ì´ë™í•  ì‹œ Objectê°€ í…”ë ˆí¬íŠ¸ í•˜ëŠ” ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ Time.deltaTimeì„ ê³±í•´ì¤Œ
         speed_x = Random.Range(-0.8f, 0.8f) * Time.deltaTime;
         speed_y = Random.Range(-0.8f, 0.8f) * Time.deltaTime;
 
-        isWandering = true;                          // ¸ØÃç ÀÖÀ¸¸é                                           -----|
-//                                                                                                                 |
-        yield return new WaitForSeconds(move_delay); // À§¿¡¼­ Á¤ÇØÁø ÀÌµ¿°ú ÀÌµ¿ »çÀÌÀÇ µô·¹ÀÌ¸¸Å­ ±â´Ù¸®°í  -----|
-//                                                                                                                 |
-        isWalking = true;                            // ½Ã°£ÀÌ Áö³ª ¿òÁ÷ÀÌ±â ½ÃÀÛÇÏ¸é                         -----|
-        anim.SetBool("isWalk", true);                // ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇàÇÏ°í                              -----|
-//                                                                                                                 |--------------- ÀÌ ¸ğµç °úÁ¤À» ¹İº¹ÇÔ
-        yield return new WaitForSeconds(move_time);  // ÀÌµ¿½Ã°£¸¸Å­ ±â´Ù¸° µÚ                                -----|
-//                                                                                                                 |
-        isWalking = false;                           // ¿òÁ÷ÀÓÀÌ ¸ØÃß¸ç                                       -----|
-        anim.SetBool("isWalk", false);               // ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á ÇÑ µÚ                            -----|
-//                                                                                                                 |
-        isWandering = false;                         // ¸ØÃã                                                  -----|
+        isWandering = true;                          // ë©ˆì¶° ìˆìœ¼ë©´
+        
+        yield return new WaitForSeconds(move_delay); // ìœ„ì—ì„œ ì •í•´ì§„ ì´ë™ê³¼ ì´ë™ ì‚¬ì´ì˜ ë”œë ˆì´ë§Œí¼ ê¸°ë‹¤ë¦¬ê³ 
+        
+        isWalking = true;                            // ì‹œê°„ì´ ì§€ë‚˜ ì›€ì§ì´ê¸° ì‹œì‘í•˜ë©´
+        anim.SetBool("isWalk", true);                // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰í•˜ê³  
+        
+        yield return new WaitForSeconds(move_time);  // ì´ë™ì‹œê°„ë§Œí¼ ê¸°ë‹¤ë¦° ë’¤
+        
+        
+        isWalking = false;                           // ì›€ì§ì„ì´ ë©ˆì¶”ë©°
+        
+        anim.SetBool("isWalk", false);               // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ í•œ ë’¤
+        
+        isWandering = false;                         // ë©ˆì¶¤
     }
 
-    IEnumerator GetJelatin() // ÄÚ·çÆ¾ ÇÔ¼ö  //  ÀÚµ¿À¸·Î Á©¶óÆ¾ ¾ò±â
+    IEnumerator GetJelatin() // ì½”ë£¨í‹´ í•¨ìˆ˜  //  ìë™ìœ¼ë¡œ ì ¤ë¼í‹´ ì–»ê¸°
     {
-        jelatin_delay = 3;                              // 3ÃÊ¸¶´Ù                                                  -----|
-//                                                                                                                       |
-        isGetting = true;                               // Á©¶óÆ¾ È¹µæ ¿©ºÎ¸¦ true·Î ¹Ù²Ù°í                         -----|
-        game_manager.GetJelatin(id, level);             // id¿Í level¿¡ ºñ·ÊÇØ¼­ Á©¶óÆ¾À» È¹µæÇÑ µÚ¿¡               -----|--------------- ÀÌ ¸ğµç °úÁ¤À» ¹İº¹ÇÔ
-//                                                                                                                       |
-        yield return new WaitForSeconds(jelatin_delay); // À§¿¡ ÀÖ´Â ÀÚµ¿À¸·Î ¾ò´Â Á©¶óÆ¾ÀÇ µô·¹ÀÌ¸¸Å­ ±â´Ù¸° ´ÙÀ½  -----|
-//                                                                                                                       |
-        isGetting = false;                              // Á©¶óÆ¾ È¹µæ ¿©ºÎ¸¦ false·Î ¹Ù²Ş                          -----|
+        jelatin_delay = 3;                              // 3ì´ˆë§ˆë‹¤
+        
+        isGetting = true;                               // ì ¤ë¼í‹´ íšë“ ì—¬ë¶€ë¥¼ trueë¡œ ë°”ê¾¸ê³  
+        
+        game_manager.GetJelatin(id, level);             // idì™€ levelì— ë¹„ë¡€í•´ì„œ ì ¤ë¼í‹´ì„ íšë“í•œ ë’¤ì—
+        
+        yield return new WaitForSeconds(jelatin_delay); // ìœ„ì— ìˆëŠ” ìë™ìœ¼ë¡œ ì–»ëŠ” ì ¤ë¼í‹´ì˜ ë”œë ˆì´ë§Œí¼ ê¸°ë‹¤ë¦° ë‹¤ìŒ 
+        
+        isGetting = false;                              // ì ¤ë¼í‹´ íšë“ ì—¬ë¶€ë¥¼ falseë¡œ ë°”ê¿ˆ
     }
 }
