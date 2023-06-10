@@ -1,8 +1,8 @@
 {
-    "jelatin": 15536,
-    "gold": 27032,
+    "jelatin": 0,
+    "gold": 0,
     "jelly_unlock_list": [
-        false,
+        true,
         false,
         false,
         false,
@@ -15,10 +15,21 @@
         false,
         false
     ],
-    "jelly_list": [],
+    "jelly_list": [
+        {
+            "id": 0,
+            "level": 1,
+            "exp": 0,
+            "pos": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        }
+    ],
     "num_level": 1,
     "click_level": 1,
-    "bgm_vol": 0.07378119230270386,
-    "sfx_vol": 0.16892391443252564,
-    "index": 1
+    "bgm_vol": 0.5,
+    "sfx_vol": 0.5,
+    "index": 0
 }
