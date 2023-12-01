@@ -1,5 +1,5 @@
 # Unity_JellyFarm
- ● Simple Clicker Game
+ - Simple Clicker Game
 
 # Control
 LBM(Left Mouse Button) = interact with objects
