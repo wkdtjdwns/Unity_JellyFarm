@@ -150,6 +150,23 @@ public class GameManager : MonoBehaviour
             else if (isBgmClick) ClickBgmBtn();     // 배경음 UI가 켜져 있었다면 (배경음 버튼이 눌렸을 때) 함수를 사용해서 UI를 내리고 
             else Option();                          // 아무 UI도 켜져 있지 않았다면 ESC 창을 올린다
         }
+
+        // 치트키 (지구 젤리가 5개 생성됨)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.F))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject obj = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+                Jelly jelly = obj.GetComponent<Jelly>();
+                obj.name = "Jelly " + 11;
+                jelly.id = 11;
+                jelly.sprite_renderer.sprite = jelly_spritelist[11];
+
+                jelly_list.Add(jelly);
+
+                SoundManager.instance.PlaySound("Buy");
+            }
+        }
     }
 
     void FixedUpdate() // 일정한 간격마다
